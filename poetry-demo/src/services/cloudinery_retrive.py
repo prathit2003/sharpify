@@ -1,5 +1,5 @@
-
-from services import cloudinary  
+import src.services 
+import cloudinary  
 from fastapi import HTTPException
 
 def get_image_url(public_id: str) -> str:

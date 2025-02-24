@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from router import colorize, backgroundremove, enhance, formatchange, sizereducer
+from src.router import colorize, backgroundremove, enhance, formatchange, sizereducer
 
 app = FastAPI()
 

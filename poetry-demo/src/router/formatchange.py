@@ -1,6 +1,6 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 import asyncio
-from utils.AI_formatchange import process_image
+from src.utils.AI_formatchange import process_image
 
 router = APIRouter()
 

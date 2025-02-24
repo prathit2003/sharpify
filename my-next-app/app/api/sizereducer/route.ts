@@ -8,7 +8,7 @@ export async function POST(req: Request, res: NextResponse): Promise<NextRespons
     const public_id = await uploadToCloudinery(file);
 
     return new Promise<NextResponse>((resolve, reject) => {
-      const ws = new WebSocket("ws://localhost:8000/ws");
+      const ws = new WebSocket("ws://localhost:8000/api/sizereducer");
 
       ws.onopen = () => {
         ws.send(public_id);

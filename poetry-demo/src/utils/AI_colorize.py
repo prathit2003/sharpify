@@ -1,5 +1,5 @@
-from services.cloudinery_retrive import get_image_url
-from services.cloudinery_upload import upload_image
+from src.services.cloudinery_retrive import get_image_url
+from src.services.cloudinery_upload import upload_image
 import requests
 from io import BytesIO
 from PIL import Image

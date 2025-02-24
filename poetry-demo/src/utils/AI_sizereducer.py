@@ -1,12 +1,21 @@
-from services.cloudinery_retrive import get_image_url
-from services.cloudinery_upload import upload_image
+from io import BytesIO
+from src.services.cloudinery_retrive import get_image_url
+from src.services.cloudinery_upload import upload_image
 from fastapi import HTTPException
+from PIL import Image
+from src.services.downloadImage import download_image
+
+def compress_image(image, quality=70):
+    img_bytes = BytesIO()
+    image.save(img_bytes, "JPEG", quality=quality)
+    return img_bytes.getvalue() 
 
 async def process_image(public_id: str) -> str: 
   try: 
     image_url = get_image_url(public_id)
-
-    new_image_url = await upload_image(public_id)
+    image = download_image(image_url)
+    final_image = compress_image(image, quality=70)
+    new_image_url = await upload_image(public_id, final_image)
     return new_image_url
   except Exception as e:
-      raise HTTPException(status_code=500, detail=str(e))  
+      raise HTTPException(status_code=500, detail=str(e)) 
