@@ -3,9 +3,9 @@ from src.router import colorize, backgroundremove, enhance, formatchange, sizere
 
 app = FastAPI()
 
-app.include_router(colorize.router, prefix="/api/colorize")
-app.include_router(backgroundremove.router, prefix="/api/backgroundremove")
-app.include_router(enhance.router, prefix="/api/enhance")
+# app.include_router(colorize.router, prefix="/api/colorize")
+# app.include_router(backgroundremove.router, prefix="/api/backgroundremove")
+# app.include_router(enhance.router, prefix="/api/enhance")
 app.include_router(formatchange.router, prefix="/api/formatchange")
 app.include_router(sizereducer.router, prefix="/api/sizereducer")
 

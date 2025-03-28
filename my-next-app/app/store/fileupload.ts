@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface ImageState {
-  image: File | null; // Single file object
+  image: File | null;
   setImage: (file: File | null) => void;
   uploadedUrl: string | null;
   setUploadedUrl: (url: string | null) => void;
