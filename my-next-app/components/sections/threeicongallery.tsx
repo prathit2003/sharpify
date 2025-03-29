@@ -6,7 +6,7 @@ import Component from "../ui/3iconcomponent";
 const ThreeCard = () => {
   const {} = useUIStore();
   return (
-    <div className="flex flex-row h-screen justify-around gap-2 py-10 my-30 mx-5">
+    <div className="flex flex-row  justify-around gap-2 p-10 my-20 mx-5">
       <Component
         iconPath="icons/enhancementicon.svg"
         Heading="powered by real esrgan "

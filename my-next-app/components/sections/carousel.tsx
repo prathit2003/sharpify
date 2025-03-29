@@ -20,7 +20,7 @@ const CustomCarousel = () => {
     if (isHovered) {
       const interval = setTimeout(() => {
         nextSlide();
-      }, 2000);
+      }, 3500);
       return () => clearTimeout(interval);
     }
   }, [isHovered, currentIndex]);
@@ -34,10 +34,10 @@ const CustomCarousel = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen p-6">
+    <div className="flex flex-col items-center justify-center mt-10 mb-20 p-6 gap-6">
       {/* Carousel Wrapper */}
       <div
-        className="relative w-full max-w-4xl h-96 overflow-hidden rounded-lg shadow-lg"
+        className="flex flex-col items-center w-full h-120 overflow-hidden rounded-lg shadow-lg"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -47,37 +47,38 @@ const CustomCarousel = () => {
           alt={`Slide ${currentIndex + 1}`}
           className="w-full h-full object-cover transition-all duration-500"
         />
-
-        {/* Text Overlay at Bottom */}
-        <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white p-4 text-center text-lg">
-          {images[currentIndex].text}
-        </div>
       </div>
 
-      {/* Prev Button */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700"
-      >
-        <ChevronLeft size={24} />
-      </button>
+      {/* Navigation Controls */}
+      <div className="flex items-center justify-between w-full max-w-4xl px-6">
+        {/* Prev Button */}
+        <button
+          onClick={prevSlide}
+          className="bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700"
+        >
+          <ChevronLeft size={24} />
+        </button>
 
-      {/* Next Button */}
-      <button
-        onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700"
-      >
-        <ChevronRight size={24} />
-      </button>
+        {/* Dots Navigation */}
+        <div className=" text-black p-4 text-center text-2xl w-full ">
+          {images[currentIndex].text}
+        </div>
 
-      {/* Dots Navigation */}
-      <div className="absolute bottom-4 flex gap-2">
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+      <div className="flex gap-2">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? "bg-blue-600" : "bg-gray-400"
+              currentIndex === index ? "bg-gray-950" : "bg-gray-400"
             } transition-all duration-300`}
           ></button>
         ))}

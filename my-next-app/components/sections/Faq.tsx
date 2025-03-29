@@ -47,7 +47,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 my-4 text-black">
+    <div className="max-w-3xl mx-auto p-6 my-20 text-black">
       <h2 className="text-3xl font-semibold mb-6 text-center text-black">
         Frequently Asked Questions
       </h2>

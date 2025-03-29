@@ -71,9 +71,17 @@
 */
 @layer base {}
 
+@import url('https://fonts.googleapis.com/css2?family=Unna:wght@400;500;600;700&display=swap');
+
 @layer utilities {
   .text-content {
     color: #444545;
-    
+    font-family: 'Unna', serif;
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Unna', serif;
   }
 }
