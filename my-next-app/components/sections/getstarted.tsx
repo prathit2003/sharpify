@@ -6,7 +6,7 @@ export default function GetStarted() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-4xl font-semibold tracking-tight text-white">
+            <h2 className="text-4xl  tracking-tight text-white">
               discover the power of AI image enhancement
             </h2>
             <p className="mt-4 text-lg text-gray-300">
@@ -18,7 +18,7 @@ export default function GetStarted() {
             <div className="mt-6 flex max-w-md gap-x-4">
               <button
                 type="submit"
-                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm  text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
                 get going!
               </button>
@@ -42,9 +42,7 @@ export default function GetStarted() {
                   />
                 </svg>
               </div>
-              <dt className="mt-4 text-base font-semibold text-white">
-                colorize your images
-              </dt>
+              <dt className="mt-4 text-xl text-white">colorize your images</dt>
               <dd className="mt-2 text-base/7 text-gray-400">
                 Bring your black-and-white photos to life with vibrant colors
                 using our advanced AI technology. Transform old memories into
@@ -55,7 +53,7 @@ export default function GetStarted() {
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                 <CameraIcon className="h-6 w-6 text-indigo-400" />
               </div>
-              <dt className="mt-4 text-base font-semibold text-white">
+              <dt className="mt-4 text-xl text-white">
                 enhance image resolution
               </dt>
               <dd className="mt-2 text-base/7 text-gray-400">
