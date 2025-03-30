@@ -1,9 +1,15 @@
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Sarpanch:wght@400;500;600;700;800;900&display=swap');
 /*
   ---break---
 */
-
+@layer utilities {
+  .blk {
+    color: black;
+  }
+  .bg-blk {
+    background-color: black;
+  }
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -55,6 +61,53 @@
 /*
   ---break---
 */
+@keyframes infinite-scroll {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-50% - 8px));
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 20s linear infinite;
+}
+/* Add your custom styles here */
+
+.animate-typing {
+   /* Prevents text wrapping */
+  border-right: 2px solid black; /* Simulates the cursor */
+  animation: typing 2s steps(30, end), cursor-blink 0.4s step-end infinite alternate;
+}
+
+@keyframes cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes infinite-scroll-reverse {
+  0% {
+    transform: translateX(calc(-50% - 8px));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-infinite-scroll-reverse {
+  animation: infinite-scroll-reverse 20s linear infinite;
+}
 @theme inline {
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -73,6 +126,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Unna:wght@400;500;600;700&display=swap');
 
+/*
+  ---break---
+*/
+
+
 @layer utilities {
   .text-content {
     color: #444545;
@@ -85,3 +143,8 @@
     font-family: 'Unna', serif;
   }
 }
+
+/*
+  ---break---
+*/
+

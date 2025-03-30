@@ -6,10 +6,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const images = [
   {
     src: "/images/slide-1.jpg",
-    text: "Slide 1 - Print bravely with increased photo resolution",
+    text: " Print bravely with increased photo resolution",
   },
-  { src: "/images/slide-2.jpg", text: "Slide 2 - Explore the Beauty" },
-  { src: "/images/slide-3.jpg", text: "Slide 3 - Adventure Awaits" },
+  { src: "/images/slide-2.jpg", text: "Explore the Beauty" },
+  { src: "/images/slide-3.jpg", text: "Adventure Awaits" },
 ];
 
 const CustomCarousel = () => {
@@ -45,7 +45,7 @@ const CustomCarousel = () => {
         <img
           src={images[currentIndex].src}
           alt={`Slide ${currentIndex + 1}`}
-          className="w-full h-full object-cover transition-all duration-500"
+          className="w-full h-full object-cover object-center transition-all duration-500"
         />
       </div>
 

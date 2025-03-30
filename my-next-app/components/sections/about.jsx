@@ -6,9 +6,9 @@ const AbouT = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useUIStore();
 
   return (
-    <div className="flex flex-col justify-center items-center px-20">
+    <div className="flex flex-col justify-center items-center py-30 px-20">
       {/* Section 1 */}
-      <div className="flex flex-row w-2/3 h-1/2 items-center justify-between mx-20">
+      <div className="flex flex-row w-2/3 h-1/3 items-center justify-between mx-20">
         {/* Image */}
         <div className="w-1/2 px-4 flex justify-center">
           <img
@@ -33,7 +33,7 @@ const AbouT = () => {
       </div>
 
       {/* Section 2 (Reversed) */}
-      <div className="flex flex-row-reverse w-2/3 h-1/2 items-center justify-between gap-4 mx-20">
+      <div className="flex flex-row-reverse w-2/3 h-1/3 items-center justify-between gap-4 mx-20">
         {/* Image */}
         <div className="w-1/2 px-4">
           <img

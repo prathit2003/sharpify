@@ -1,13 +1,12 @@
-"use client"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { signIn } from "next-auth/react"
-import useAuthStore from "@/app/store/authatom"
+"use client";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { signIn } from "next-auth/react";
+import useAuthStore from "@/app/store/authatom";
 import usePopupStore from "@/app/store/popupsatom";
-
 
 export function LoginForm({
   className,
@@ -15,8 +14,6 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { email, setEmail, password, setPassword, reset } = useAuthStore();
   const { seterror } = usePopupStore();
-
-
 
   const handlelogin = async () => {
     try {
@@ -26,21 +23,24 @@ export function LoginForm({
         redirect: true,
         callbackUrl: "/dashboard",
       });
-      if (!result) {
-        seterror("something went wrong");
+      if (result?.error) {
+        seterror(result.error);
         return;
-      }
-      if (result.error) {
-        throw new Error(result.error);
       }
       reset();
     } catch (error: any) {
       seterror(error.message);
       console.log(error);
     }
-  }
+  };
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div
+      className={cn(
+        "flex flex-col gap-6 bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl",
+        className
+      )}
+      {...props}
+    >
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8">
@@ -73,12 +73,16 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required onChange={(e) => {
-                  setPassword(e.target.value);
-                }} />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
               </div>
-              <Button type="submit" className="w-full"
-                onClick={handlelogin}>
+              <Button type="submit" className="w-full" onClick={handlelogin}>
                 Login
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
@@ -123,19 +127,15 @@ export function LoginForm({
               </div>
             </div>
           </form>
-          <div className="relative hidden bg-muted md:block">
+          <div className="relative hidden  md:block">
             <img
-              src="/placeholder.svg"
+              src="/images/background3.jpg"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
         </CardContent>
       </Card>
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </div>
     </div>
-  )
+  );
 }
