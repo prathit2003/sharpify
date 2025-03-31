@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
 
-export async function POST(): Promise<NextResponse> {
+export async function POST(
+  req: Request,
+  res: NextResponse
+): Promise<NextResponse> {
   try {
-    const public_id = "cuig2gsfjwzh2vopzpvk.jpg"; // Hardcoded for testing
-
+    const { imageUrl } = await req.json();
     return new Promise<NextResponse>((resolve, reject) => {
       const ws = new WebSocket("ws://localhost:8000/api/formatchange");
 
       ws.onopen = () => {
         console.log("WebSocket connected. Sending public_id...");
-        ws.send(public_id);
+        ws.send(imageUrl);
       };
 
       ws.onmessage = (event) => {
@@ -21,7 +23,12 @@ export async function POST(): Promise<NextResponse> {
       ws.onerror = (error) => {
         console.error("WebSocket error:", error);
         ws.close();
-        reject(NextResponse.json({ error: "WebSocket communication failed" }, { status: 500 }));
+        reject(
+          NextResponse.json(
+            { error: "WebSocket communication failed" },
+            { status: 500 }
+          )
+        );
       };
 
       ws.onclose = () => {
@@ -31,7 +38,9 @@ export async function POST(): Promise<NextResponse> {
       setTimeout(() => {
         console.error("WebSocket timeout.");
         ws.close();
-        reject(NextResponse.json({ error: "WebSocket timeout" }, { status: 504 }));
+        reject(
+          NextResponse.json({ error: "WebSocket timeout" }, { status: 504 })
+        );
       }, 10000);
     });
   } catch (error) {
