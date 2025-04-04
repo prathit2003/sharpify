@@ -1,12 +1,10 @@
-"use client"
-
-import { ChevronRight, type LucideIcon } from "lucide-react"
-
+"use client";
+import { ChevronRight, type LucideIcon } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/collapsible";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -16,22 +14,41 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { Button } from "./ui/button";
+
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import useBECstore from "@/app/store/backendcallsatom";
 
 export function NavMain({
   items,
 }: {
   items: {
-    title: string
-    url: string
-    icon?: LucideIcon
-    isActive?: boolean
+    title: string;
+    url: string;
+    icon?: LucideIcon;
+    isActive?: boolean;
     items?: {
-      title: string
-      url: string
-    }[]
-  }[]
+      title: string;
+      url: string;
+    }[];
+  }[];
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { toggle, setSection, setToggle } = useBECstore();
+
+  const handleItemClick = (subItemurl: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("section", subItemurl);
+    router.push(`${pathname}?${params.toString()}`);
+    setSection(subItemurl);
+    setToggle(!toggle);
+  };
+
+  const currentSection = searchParams.get("section");
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -56,9 +73,16 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                        <Button
+                          variant={
+                            currentSection === subItem.title
+                              ? "secondary"
+                              : "ghost"
+                          }
+                          onClick={() => handleItemClick(subItem.url)}
+                        >
                           <span>{subItem.title}</span>
-                        </a>
+                        </Button>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
@@ -69,5 +93,5 @@ export function NavMain({
         ))}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

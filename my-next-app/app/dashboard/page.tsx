@@ -1,4 +1,5 @@
 "use client";
+
 import CropRender from "@/components/sections/dashboard/crop";
 import UploadImage from "@/components/sections/dashboard/upload-image";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -16,11 +17,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { useRouter } from "next/router";
+import useBECstore from "@/app/store/backendcallsatom";
 
 export default function Page() {
-  const router = useRouter();
-  const { section } = router.query;
+  const { section } = useBECstore();
+  console.log(section);
   return (
     <>
       <SidebarProvider>
@@ -39,14 +40,11 @@ export default function Page() {
                     <BreadcrumbLink href="/">home</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator className="hidden md:block" />
+                  <BreadcrumbItem className="hidden md:block">
+                    <BreadcrumbLink href="/dashboard">dashboard</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>
-                    <BreadcrumbItem className="hidden md:block">
-                      <BreadcrumbLink href="/dashboard">
-                        dashboard
-                      </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="hidden md:block" />
-                    <BreadcrumbItem></BreadcrumbItem>
                     <BreadcrumbPage>your project</BreadcrumbPage>
                   </BreadcrumbItem>
                 </BreadcrumbList>
@@ -54,8 +52,14 @@ export default function Page() {
             </div>
           </header>
           <div className="m-4 p-6 bg-white ">
-            {section === "crop" && <CropRender />}
-            {!section && <UploadImage />}
+            {!section || section === "crop" ? (
+              <CropRender />
+            ) : (
+              <UploadImage
+                formatofimage={null}
+                curentsection={section}
+              ></UploadImage>
+            )}
           </div>
         </SidebarInset>
       </SidebarProvider>

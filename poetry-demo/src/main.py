@@ -1,20 +1,29 @@
 from fastapi import FastAPI
-from src.router import colorize, backgroundremove, enhance, formatchange, sizereducer
-
+from fastapi.middleware.cors import CORSMiddleware
+from src.router.formatchange import router as formatchange_router
+from src.router.reducesize import router as reducesize_router
+from src.router.removebackground import router as rmbg_router
+from src.router.enhanceimage import router as enhance_image_router
 app = FastAPI()
+origins = ["http://localhost:3000"]  
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  
+    allow_credentials=True, 
+    allow_methods=["*"],  
+    allow_headers=["*"], 
+)
 
-# app.include_router(colorize.router, prefix="/api/colorize")
-# app.include_router(backgroundremove.router, prefix="/api/backgroundremove")
-# app.include_router(enhance.router, prefix="/api/enhance")
-app.include_router(formatchange.router, prefix="/api/formatchange")
-app.include_router(sizereducer.router, prefix="/api/sizereducer")
+@app.get("/health")
+def root():
+    return {"message": "Hello World"}
 
-
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to FastAPI"}
+app.include_router(formatchange_router, prefix="/api")
+app.include_router(reducesize_router, prefix="/api")
+app.include_router(rmbg_router, prefix="/api")
+app.include_router(enhance_image_router, prefix="/api")
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)

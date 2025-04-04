@@ -1,23 +1,16 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-import asyncio
-from src.utils.AI_formatchange import process_image
+from fastapi import APIRouter
+from pydantic import BaseModel
+from typing import Optional
+from src.utils.formatchangeprocess import process_image
 
 router = APIRouter()
 
-@router.websocket("/")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
+class ImageRequest(BaseModel):
+    image_url: str
+    format: Optional[str] = 'png'
     
-    try:
-        while True:
-            data = await websocket.receive_text()
-            print(f"Received public_id: {data}")
 
-            try:
-                new_url = await process_image(data)  
-                await websocket.send_text(new_url)
-            except Exception as e:
-                await websocket.send_text(f"Error processing image: {str(e)}")
-    
-    except WebSocketDisconnect:
-        print("Client disconnected")
+@router.post("/changeformat")
+async def change_format(request: ImageRequest):
+    processed_url = await process_image(request.image_url, request.format)
+    return {"url":processed_url}

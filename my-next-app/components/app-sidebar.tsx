@@ -49,23 +49,23 @@ const data = {
       items: [
         {
           title: "Crop",
-          url: "#",
+          url: "crop",
         },
         {
           title: "Remove Background",
-          url: "#",
+          url: "removebackground",
         },
         {
           title: "Change Format",
-          url: "#",
+          url: "changeformat",
         },
         {
-          title: "Change Size",
-          url: "#",
+          title: "Reduce Size",
+          url: "reducesize",
         },
         {
           title: "Enhance Image",
-          url: "#",
+          url: "enhanceimage",
         },
         {
           title: "More...",

@@ -1,17 +1,70 @@
 "use-client";
 
 import { Button } from "@/components/ui/button";
+import useImageStore from "@/app/store/fileupload";
 import { CldUploadWidget } from "next-cloudinary";
-export default function UploadImage() {
-  function setUploadedUrl(secure_url: string) {
-    throw new Error("Function not implemented.");
-  }
+import callbackend from "@/functions/web-socket";
 
+export default function UploadImage({
+  formatofimage = null,
+  curentsection,
+}: {
+  formatofimage?: string | null;
+  curentsection: string;
+}) {
+  const { setUploadedUrl, uploadedUrl } = useImageStore();
+  const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "";
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = uploadedUrl!;
+    link.download = "downloaded-image.jpg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handlePreview = () => {
+    window.open(uploadedUrl!, "_blank");
+  };
   return (
-    <>
-      <div>
+    <div>
+      {uploadedUrl ? (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+            <h2 className="text-xl font-bold mb-4">Image Preview</h2>
+            <img
+              src={uploadedUrl}
+              alt="Uploaded"
+              className="w-full h-48 object-cover rounded-lg mb-3"
+            />
+
+            <p className="text-blue-500 break-all">{uploadedUrl}</p>
+
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={handlePreview}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+              >
+                Preview
+              </button>
+              <button
+                onClick={handleDownload}
+                className="bg-green-500 text-white px-4 py-2 rounded-lg"
+              >
+                Download
+              </button>
+            </div>
+
+            <button
+              onClick={() => setUploadedUrl(null)}
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      ) : (
         <div className="container py-24 lg:py-32">
-          {/* Announcement Banner */}
           <div className="flex justify-center">
             <a
               className="inline-flex items-center gap-x-2 border text-sm p-1 ps-3 rounded-full transition"
@@ -36,8 +89,7 @@ export default function UploadImage() {
               </span>
             </a>
           </div>
-          {/* End Announcement Banner */}
-          {/* Title */}
+
           <div className="mt-5 max-w-2xl text-center mx-auto">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               Let&apos;s Build Together
@@ -53,15 +105,25 @@ export default function UploadImage() {
           {/* Buttons */}
           <div className="mt-8  flex justify-center items-center">
             <CldUploadWidget
-              uploadPreset="prathit_web_images"
-              onSuccess={(result) => {
+              uploadPreset={preset}
+              onSuccess={async (result: any, widget) => {
+                console.log("on success the route passed is:", curentsection);
+                if (!curentsection) {
+                  console.error("curentsection is null, skipping API call");
+                  return;
+                }
                 if (
                   result?.info &&
                   typeof result.info === "object" &&
                   "secure_url" in result.info
                 ) {
-                  console.log(result.info.secure_url);
-                  setUploadedUrl(result.info.secure_url);
+                  const response = await callbackend(
+                    curentsection,
+                    result.info.secure_url,
+                    formatofimage
+                  );
+
+                  setUploadedUrl(response);
                 }
               }}
               onQueuesEnd={(result, { widget }) => {
@@ -69,15 +131,12 @@ export default function UploadImage() {
               }}
             >
               {({ open }) => {
-                function handleOnClick() {
-                  open();
-                }
                 return (
                   <Button
                     variant={"outline"}
                     className="group relative items-center gap-2 overflow-hidden bg-muted-foreground/10 text-muted-foreground transition-all hover:scale-105 hover:text-card-foreground/90 active:scale-95"
                     size={"lg"}
-                    onClick={handleOnClick}
+                    onClick={() => open()}
                   >
                     Upload Image
                     <svg
@@ -101,8 +160,8 @@ export default function UploadImage() {
             </CldUploadWidget>
           </div>
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 }
 const backgroundSvg = (

@@ -5,17 +5,17 @@ import useImageStore from "@/app/store/fileupload";
 import ImageCropper from "@/components/imagecropper";
 import { Button } from "@/components/ui/button";
 import { CldUploadWidget } from "next-cloudinary";
-const { setUploadedUrl, uploadedUrl } = useImageStore();
-const {
-  crop,
-  zoom,
-  setCrop,
-  setZoom,
-  setCroppedAreaPixels,
-  croppedAreaPixels,
-} = useCropStore();
 
 export default function CropRender() {
+  const { setUploadedUrl, uploadedUrl } = useImageStore();
+  const {
+    crop,
+    zoom,
+    setCrop,
+    setZoom,
+    setCroppedAreaPixels,
+    croppedAreaPixels,
+  } = useCropStore();
   return (
     <>
       {uploadedUrl ? (

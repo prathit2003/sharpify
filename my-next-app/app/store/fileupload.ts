@@ -14,5 +14,4 @@ const useImageStore = create<ImageState>((set) => ({
   setUploadedUrl: (url) => set({ uploadedUrl: url }),
 }));
 
-
 export default useImageStore;
