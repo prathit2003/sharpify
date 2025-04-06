@@ -3,20 +3,24 @@ import { Minus, Plus } from "lucide-react";
 
 const faqs = [
   {
-    question: "What is your return policy?",
-    answer: "We offer a 30-day return policy on all items.",
+    question: "How does AI enhancement improve my images?",
+    answer:
+      "Our AI automatically enhances image sharpness, reduces noise, improves colors, and increases resolution for a professional look.",
   },
   {
-    question: "How long does shipping take?",
-    answer: "Shipping typically takes 5-7 business days.",
+    question: "Can I remove the background from an image?",
+    answer:
+      "Yes! Our AI accurately detects and removes backgrounds while preserving fine details, making your image ready for any use case.",
   },
   {
-    question: "Do you offer international shipping?",
-    answer: "Yes, we ship to over 50 countries worldwide.",
+    question: "How do I crop my image to the desired size?",
+    answer:
+      "You can easily crop images by selecting your preferred dimensions. The AI ensures high quality even after cropping.",
   },
   {
-    question: "How can I track my order?",
-    answer: "You will receive a tracking number via email after purchase.",
+    question: "Can I change the size and format of my image?",
+    answer:
+      "Absolutely! You can upscale images, reduce file size without losing quality, and convert between formats like PNG, JPG, and WebP.",
   },
   {
     question: "How does your AI Enhancer work?",

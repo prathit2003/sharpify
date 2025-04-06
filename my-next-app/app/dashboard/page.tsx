@@ -51,16 +51,15 @@ export default function Page() {
               </Breadcrumb>
             </div>
           </header>
-          <div className="m-4 p-6 bg-white ">
-            {!section || section === "crop" ? (
-              <CropRender />
-            ) : (
-              <UploadImage
-                formatofimage={null}
-                curentsection={section}
-              ></UploadImage>
-            )}
-          </div>
+
+          {!section || section === "crop" ? (
+            <CropRender />
+          ) : (
+            <UploadImage
+              formatofimage={null}
+              curentsection={section}
+            ></UploadImage>
+          )}
         </SidebarInset>
       </SidebarProvider>
     </>

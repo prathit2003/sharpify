@@ -21,58 +21,50 @@ export default function CropRender() {
       {uploadedUrl ? (
         <ImageCropper imageUrl={uploadedUrl} />
       ) : (
-        <div className="flex justify-evenly items-center gap-8 p-4">
-          <div className="rounded-2xl shadow-2xl bg-white p-6 w-full max-w-md">
-            <div className="flex flex-col gap-6">
-              <div className="grid grid-cols-2 gap-4">
+        <div className="flex justify-evenly items-center gap-6 p-4">
+          <div className=" flex flex-col items-center justify-center rounded-lg bg-black backdrop-blur-lg shadow-sm border-2 p-4 w-full aspect-square">
+            <div className=" self-center flex flex-col gap-4">
+              <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    X
-                  </label>
+                  <label className="block text-lg m-2 text-white">X</label>
                   <input
                     type="text"
                     value={crop.x}
                     disabled
-                    className="input-field"
+                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Y
-                  </label>
+                  <label className="block text-lg m-2 text-white">Y</label>
                   <input
                     type="text"
                     value={crop.y}
                     disabled
-                    className="input-field"
+                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Width
-                  </label>
+                  <label className="block text-lg m-2 text-white">Width</label>
                   <input
                     type="text"
                     value={croppedAreaPixels?.width || 0}
                     disabled
-                    className="input-field"
+                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Height
-                  </label>
+                  <label className="block text-lg m-2 text-white">Height</label>
                   <input
                     type="text"
                     value={croppedAreaPixels?.height || 0}
                     disabled
-                    className="input-field"
+                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-center items-center w-full max-w-md h-96 bg-white rounded-lg shadow-lg overflow-hidden ">
+          <div className="flex justify-center items-center w-full p-2 aspect-square bg-black backdrop-blur-lg shadow-sm  rounded-lg border-2  ">
             <CldUploadWidget
               uploadPreset="prathit_web_images"
               onSuccess={(result) => {
@@ -96,7 +88,7 @@ export default function CropRender() {
                 return (
                   <Button
                     variant={"outline"}
-                    className="group relative items-center gap-2 overflow-hidden bg-muted-foreground/10 text-muted-foreground transition-all hover:scale-105 hover:text-card-foreground/90 active:scale-95"
+                    className="group relative items-center gap-2 overflow-hidden bg-muted-foreground/10 text-muted-foreground transition-all hover:scale-105  active:scale-95 text-white"
                     size={"lg"}
                     onClick={handleOnClick}
                   >
@@ -106,7 +98,7 @@ export default function CropRender() {
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
-                      fill="none"
+                      fill="white"
                       stroke="currentColor"
                       strokeWidth="2"
                       strokeLinecap="round"

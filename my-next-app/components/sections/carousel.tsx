@@ -3,13 +3,37 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
+const slides = [
   {
-    src: "/images/slide-1.jpg",
-    text: " Print bravely with increased photo resolution",
+    src: "/images/c1.jpg",
+    title: "Enhance Image Quality",
+    description:
+      "Boost resolution, sharpen details, and improve colors in just one click.",
   },
-  { src: "/images/slide-2.jpg", text: "Explore the Beauty" },
-  { src: "/images/slide-3.jpg", text: "Adventure Awaits" },
+  {
+    src: "/images/c2.jpg",
+    title: "Remove Background",
+    description:
+      "Instantly remove backgrounds with AI, keeping only the subject in perfect detail.",
+  },
+  {
+    src: "/images/background3.jpg",
+    title: "Crop & Adjust",
+    description:
+      "Resize and crop images to fit any platform while maintaining top quality.",
+  },
+  {
+    src: "/images/background.jpg",
+    title: "Change Size",
+    description:
+      "Scale images up or down without losing clarity, perfect for any use case.",
+  },
+  {
+    src: "/images/c3.jpg",
+    title: "Change Format",
+    description:
+      "Convert images between PNG, JPG, and WebP seamlessly while preserving quality.",
+  },
 ];
 
 const CustomCarousel = () => {
@@ -26,11 +50,11 @@ const CustomCarousel = () => {
   }, [isHovered, currentIndex]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   return (
@@ -43,8 +67,8 @@ const CustomCarousel = () => {
       >
         {/* Image */}
         <img
-          src={images[currentIndex].src}
-          alt={`Slide ${currentIndex + 1}`}
+          src={slides[currentIndex].src}
+          alt={slides[currentIndex].title}
           className="w-full h-full object-cover object-center transition-all duration-500"
         />
       </div>
@@ -54,26 +78,33 @@ const CustomCarousel = () => {
         {/* Prev Button */}
         <button
           onClick={prevSlide}
-          className="bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700"
+          className="bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-all"
         >
           <ChevronLeft size={24} />
         </button>
 
-        {/* Dots Navigation */}
-        <div className=" text-black p-4 text-center text-2xl w-full ">
-          {images[currentIndex].text}
+        {/* Heading */}
+        <div className="text-black text-center text-3xl font-semibold transition-all duration-500">
+          {slides[currentIndex].title}
         </div>
 
         {/* Next Button */}
         <button
           onClick={nextSlide}
-          className="bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700"
+          className="bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-all"
         >
           <ChevronRight size={24} />
         </button>
       </div>
+
+      {/* Description */}
+      <div className="text-lg text-gray-600 text-center max-w-2xl transition-all duration-500">
+        {slides[currentIndex].description}
+      </div>
+
+      {/* Dots Navigation */}
       <div className="flex gap-2">
-        {images.map((_, index) => (
+        {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}

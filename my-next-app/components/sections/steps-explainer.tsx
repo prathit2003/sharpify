@@ -1,6 +1,5 @@
 "use client";
 
-import useUIStore from "@/app/store/UIatom";
 import { useState } from "react";
 
 const steps = [
@@ -26,10 +25,10 @@ const steps = [
 ];
 
 const StepExplainer = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0); // First step hover effect activated by default
+  const [activeIndex, setActiveIndex] = useState<number | null>(0); // First step active by default
 
   return (
-    <div className=" bg-black w-full flex flex-col md:flex-row justify-center items-center z-20 rounded-3xl  pt-8 p-8 px-20">
+    <div className="bg-black w-full flex flex-col md:flex-row justify-center items-center z-20 rounded-3xl pt-8 p-8 px-20">
       {/* Image Container */}
       <div className="w-1/2 aspect-square overflow-hidden rounded-xl shadow-lg">
         <img
@@ -40,22 +39,28 @@ const StepExplainer = () => {
       </div>
 
       {/* Steps Section */}
-      <div className="w-1/2 aspect-square flex-col justify-between items-center mt-20 p-6">
-        <div>
-          <h1 className=" ml-5 pt-10 text-left text-5xl text-white">
-            How to enhance image quality
-          </h1>
-          <div className="mt-6 space-y-4">
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                className="p-4 rounded-lg bg-black hover:shadow-md hover:p-5 hover:border-0.5 hover:border-white transition duration-300"
-              >
-                <h2 className="text-2xl text-white">{step.title}</h2>
-                <p className="text-lg text-gray-300">{step.description}</p>
-              </div>
-            ))}
-          </div>
+      <div className="w-1/2 aspect-square flex flex-col items-start mt-20 p-6">
+        <h1 className="ml-5 pt-10 text-left text-5xl text-white">
+          How to enhance image quality
+        </h1>
+        <div className=" space-y-4 mt-10 w-full">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              onMouseEnter={() => setActiveIndex(index)}
+              className={`p-4 rounded-lg transition-all duration-300 cursor-pointer border border-transparent 
+                ${
+                  activeIndex === index
+                    ? "backdrop-blur-lg bg-white/10 shadow-lg p-5 border-white"
+                    : "bg-black"
+                }`}
+            >
+              <h2 className="text-2xl text-white">{step.title}</h2>
+              {activeIndex === index && (
+                <p className="text-lg text-gray-300 mt-2">{step.description}</p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
