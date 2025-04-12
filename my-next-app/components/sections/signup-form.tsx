@@ -60,10 +60,10 @@ export function Signupform({
 
   return (
     <div className="flex justify-center items-center min-h-screen py-4">
-      <div className="bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl text-black px-30 py-8 my-2 w-full max-w-md">
+      <div className="bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl text-white px-30 py-8 w-full max-w-md">
         <form
           onSubmit={handlesignup}
-          className={cn("flex flex-col gap-4 text-black", className)}
+          className={cn("flex flex-col gap-4 text-white", className)}
           {...props}
         >
           <div className="flex flex-col items-center gap-2 text-center">

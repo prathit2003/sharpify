@@ -16,6 +16,9 @@ declare module "next-auth" {
 }
 
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "api/auth/signin",
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -37,19 +40,26 @@ export const authOptions: NextAuthOptions = {
           throw new Error("User not found");
         }
 
-        const passwordMatch = await compare(credentials.password, user.password);
+        const passwordMatch = await compare(
+          credentials.password,
+          user.password
+        );
         if (!passwordMatch) {
           throw new Error("Invalid password.");
         }
 
-        return { id: user.id, name: user.username, email: user.email };
+        return {
+          id: user.id.toString(),
+          name: user.username,
+          email: user.email,
+        };
       },
     }),
   ],
   session: {
     strategy: "jwt",
     maxAge: 7 * 24 * 60 * 60,
-        updateAge: 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,

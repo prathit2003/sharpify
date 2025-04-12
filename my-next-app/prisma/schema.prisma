@@ -16,6 +16,7 @@ model User {
   id       Int  @id @default(autoincrement()) 
   email    String  @unique
   password String
+  ProfilePic?  String
   username String
   images Image[]
 }
@@ -24,7 +25,6 @@ model User {
 model Image {
   id  Int @id @default(autoincrement())
   url       String @unique 
-  updated_url     String?
   userId    Int
   publicId  String  @unique
   createdAt DateTime @default(now())

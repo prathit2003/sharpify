@@ -13,7 +13,6 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const { email, setEmail, password, setPassword, reset } = useAuthStore();
-  const { seterror } = usePopupStore();
 
   const handlelogin = async () => {
     try {
@@ -24,19 +23,19 @@ export function LoginForm({
         callbackUrl: "/dashboard",
       });
       if (result?.error) {
-        seterror(result.error);
+        console.log(result.error);
         return;
       }
       reset();
     } catch (error: any) {
-      seterror(error.message);
+      console.log(error.message);
       console.log(error);
     }
   };
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl",
+        "flex flex-col gap-6 bg-white/10 backdrop-blur-lg text-white shadow-xl rounded-2xl",
         className
       )}
       {...props}
@@ -48,7 +47,7 @@ export function LoginForm({
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-balance text-muted-foreground">
-                  Login to your ai-enhancer account
+                  Login to your sharpify account
                 </p>
               </div>
               <div className="grid gap-2">

@@ -2,14 +2,10 @@
 import { Button } from "../ui/button";
 import useUIStore from "@/app/store/UIatom";
 import { Menu, X } from "lucide-react";
-import { useRouter } from "next/navigation";
-
+import usePopupStore from "@/app/store/popupsatom";
 const Navbar = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useUIStore();
-  const router = useRouter();
-  const handleLogin = () => {
-    router.push("/login");
-  };
+  const { setSignInpopup, setSignUppopup } = usePopupStore();
 
   return (
     <div className="bg-black fixed top-0 left-0 w-full z-50">
@@ -32,18 +28,22 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <a
-            href="/signup"
-            className="text-lg text-white  transition duration-300 ease-in-out hover:underline hover:scale-105 "
+          <Button
+            onClick={() => {
+              setSignUppopup(true);
+            }}
+            className="text-lg text-white  transition duration-300 ease-in-out  hover:scale-105 "
           >
-            Sign In
-          </a>
+            start creating
+          </Button>
           <div className="h-6 w-[1px] bg-white"></div>
           <Button
-            onClick={handleLogin}
+            onClick={() => {
+              setSignInpopup(true);
+            }}
             className="border border-white text-white text-lg px-4 py-2 bg-transparent rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105"
           >
-            Log In
+            signin
           </Button>
         </div>
 
@@ -67,17 +67,22 @@ const Navbar = () => {
             </a>
           ))}
           <div className="flex flex-col items-center space-y-3 mt-3">
-            <a
-              href="/signup"
-              className="text-lg text-white font-semibold underline"
-            >
-              Sign In
-            </a>
             <Button
-              onClick={handleLogin}
-              className="border border-white text-white text-lg font-semibold px-4 py-2 bg-transparent rounded-md hover:bg-white hover:text-black transition duration-300"
+              onClick={() => {
+                setSignUppopup(true);
+              }}
+              className="text-lg text-white  transition duration-300 ease-in-out  hover:scale-105 "
             >
-              Log In
+              start creating
+            </Button>
+            <div className="h-6 w-[1px] bg-white"></div>
+            <Button
+              onClick={() => {
+                setSignInpopup(true);
+              }}
+              className="border border-white text-white text-lg px-4 py-2 bg-transparent rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105"
+            >
+              signin
             </Button>
           </div>
         </div>

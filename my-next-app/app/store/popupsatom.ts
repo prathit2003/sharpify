@@ -1,22 +1,30 @@
 import { create } from "zustand";
 
 interface PopupState {
-  error: string;
-  seterror: (error: string) => void;
-  reseterror: () => void;
-  uploading: boolean;
-  setuploading: (uploading: boolean) => void;
+  Errorpopup: boolean;
+  setEroorpopup: (Errorpopup: boolean) => void;
+  SignUppopup: boolean;
+  setSignUppopup: (SignUppopup: boolean) => void;
+  SignInpopup: boolean;
+  setSignInpopup: (SignInpopup: boolean) => void;
+  closepopup: () => void;
 }
 const initialState = {
-  error: "",
-  uploading: false,
+  Errorpopup: false,
+  SignUppopup: false,
+  SignInpopup: false,
 };
 const usePopupStore = create<PopupState>((set) => ({
   ...initialState,
-  seterror: (error) => set({ error }),
-  reseterror: () => set({ error: "" }),
-  setuploading: (uploading) => set({ uploading }),
-}))
-
+  setEroorpopup: (Errorpopup) => set({ Errorpopup }),
+  setSignUppopup: (SignUppopup) => set({ SignUppopup }),
+  setSignInpopup: (SignInpopup) => set({ SignInpopup }),
+  closepopup: () =>
+    set({
+      Errorpopup: false,
+      SignUppopup: false,
+      SignInpopup: false,
+    }),
+}));
 
 export default usePopupStore;
