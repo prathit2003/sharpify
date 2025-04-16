@@ -1,49 +1,62 @@
 "use client";
 import { Button } from "../ui/button";
+import {
+  Menu as MenuIcon,
+  Close as CloseIcon,
+  Search as SearchIcon,
+} from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 import useUIStore from "@/app/store/UIatom";
-import { Menu, X } from "lucide-react";
-import usePopupStore from "@/app/store/popupsatom";
 const Navbar = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useUIStore();
-  const { setSignInpopup, setSignUppopup } = usePopupStore();
-
+  const router = useRouter();
   return (
-    <div className="bg-black fixed top-0 left-0 w-full z-50">
-      <div className="flex justify-between items-center py-4 px-12 md:px-8">
-        <div className="flex items-center ">
-          <img src="/icons/logo-white.svg" alt="Icon" className="h-12 w-auto" />
+    <div className="bg-header fixed top-0 left-0 w-full  border-b-1 border-white z-50">
+      <div className="flex justify-between  items-center py-4 px-12 md:px-8 ">
+        <div className="flex items-center space-x-16">
+          <img
+            src="/icons/sharpify.svg"
+            alt="Icon"
+            className="h-8 w-15 md:h-14 md:w-30"
+          />
+          <nav className="hidden pb-1 md:flex md:space-x-8 ">
+            {["Dashboard", "Contact", "Features", "About"].map(
+              (item, index) => (
+                <a
+                  key={index}
+                  href={`${item.toLowerCase()}`}
+                  className="relative text-md text-main hover:text-white transition duration-300 ease-in-out hover:scale-105"
+                >
+                  {item}
+                </a>
+              )
+            )}
+          </nav>
         </div>
 
-        <nav className="hidden md:flex space-x-6 mt-2">
-          {["Dashboard", "Contact", "Features", "About"].map((item, index) => (
-            <a
-              key={index}
-              href={`${item.toLowerCase()}`}
-              className="relative text-xl text-white transition-all duration-300 ease-in-out hover:text-white hover:scale-110"
-            >
-              {item}
-              <span className="absolute left-1/2 bottom-[-4px] h-[2px] w-0 bg-white transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
-            </a>
-          ))}
-        </nav>
+        <div className="hidden md:flex items-center ">
+          <SearchIcon
+            className="text-white mr-2 cursor-pointer"
+            onClick={() => console.log("Search icon clicked")}
+          />
 
-        <div className="hidden md:flex items-center space-x-4">
           <Button
             onClick={() => {
-              setSignUppopup(true);
+              router.push("/signup");
             }}
-            className="text-lg text-white  transition duration-300 ease-in-out  hover:scale-105 "
+            className="text-cyan rounded-2xl text-lg  px-4 py-2 hover:underline transition duration-300 ease-in-out  hover:scale-105 "
           >
-            start creating
+            Signup
           </Button>
-          <div className="h-6 w-[1px] bg-white"></div>
+          <div className="h-8 w-[1px] bg-white"></div>
           <Button
+            variant="outline"
             onClick={() => {
-              setSignInpopup(true);
+              router.push("/signin");
             }}
-            className="border border-white text-white text-lg px-4 py-2 bg-transparent rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105"
+            className="border-purple orbitron-font bg-cyan rounded-2xl text-heading text-lg pb-2 transition-all duration-300  hover:scale-105 mx-4"
           >
-            signin
+            Signin
           </Button>
         </div>
 
@@ -51,7 +64,7 @@ const Navbar = () => {
           className="md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
         </Button>
       </div>
 
@@ -69,18 +82,18 @@ const Navbar = () => {
           <div className="flex flex-col items-center space-y-3 mt-3">
             <Button
               onClick={() => {
-                setSignUppopup(true);
+                router.push("/signup");
               }}
-              className="text-lg text-white  transition duration-300 ease-in-out  hover:scale-105 "
+              className="text-lg  transition duration-300 ease-in-out  hover:scale-105 "
             >
               start creating
             </Button>
             <div className="h-6 w-[1px] bg-white"></div>
             <Button
               onClick={() => {
-                setSignInpopup(true);
+                router.push("/signin");
               }}
-              className="border border-white text-white text-lg px-4 py-2 bg-transparent rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105"
+              className="border-2 text-lg px-4 py-2 bg-transparent rounded-md transition-all duration-300  hover:scale-105"
             >
               signin
             </Button>

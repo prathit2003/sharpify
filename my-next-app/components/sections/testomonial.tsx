@@ -7,12 +7,12 @@ const Testominial: React.FC = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col justify-center items-center my-40 px-20">
+      <div className="w-full flex flex-col justify-center items-center my-20 px-20">
         <div className="px-20  text-center">
           <h1 className="text-3xl font-semibold">
             The only image enhancer you’ll ever need
           </h1>
-          <p className="text-gray-500 text-xl my-2 ">
+          <p className="text-main text-xl my-2 ">
             Thanks to an intuitive user interface and instant results, the
             Picsart photo enhancer is the perfect tool to rely on. Get automatic
             results with image quality enhancer’s state-of-the-art AI technology
@@ -51,7 +51,9 @@ const Testominial: React.FC = () => {
                 style={{ backgroundImage: "url('/images/pfp1.jpg')" }}
               ></div>
               <div className="text-left">
-                <h1 className="font-bold text-xl">Emily Johnson</h1>
+                <h1 className="font-bold text-heading text-xl">
+                  Emily Johnson
+                </h1>
                 <p className="text-lg text-gray-700">
                   UI/UX Designer at Creatix Solutions
                 </p>
@@ -83,7 +85,7 @@ const Testominial: React.FC = () => {
                 style={{ backgroundImage: "url('/images/pfp2.jpg')" }}
               ></div>
               <div className="text-left">
-                <h1 className="font-bold text-xl">John Smith</h1>
+                <h1 className="font-bold text-heading text-xl">John Smith</h1>
                 <p className="text-lg text-gray-700">
                   Senior Frontend Devloper at TechNova Inc.
                 </p>

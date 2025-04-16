@@ -12,5 +12,6 @@ class ImageRequest(BaseModel):
 
 @router.post("/changeformat")
 async def change_format(request: ImageRequest):
+    print(ImageRequest)
     processed_url = await process_image(request.image_url, request.format)
     return {"url":processed_url}

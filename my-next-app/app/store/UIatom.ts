@@ -1,17 +1,25 @@
-import {create} from "zustand";
+import { create } from "zustand";
 
 interface UIstate {
-  isMobileMenuOpen : boolean;
-  setIsMobileMenuOpen : (isMobileMenuOpen : boolean) => void;
+  isMobileMenuOpen: boolean;
+  Loading: boolean;
+  ActiveSidebarElement: number;
+  setloading: (Loading: boolean) => void;
+  setActiveSidebarElement: (ActiveSidebarElement: number) => void;
+  setIsMobileMenuOpen: (isMobileMenuOpen: boolean) => void;
 }
 const initialState = {
   isMobileMenuOpen: false,
+  ActiveSidebarElement: 0,
+  Loading: false,
 };
 
 const useUIStore = create<UIstate>((set) => ({
   ...initialState,
-  setIsMobileMenuOpen: (isMobileMenuOpen) => set({ isMobileMenuOpen }),  
-}))
-
+  setloading: (Loading) => set({ Loading }),
+  setIsMobileMenuOpen: (isMobileMenuOpen) => set({ isMobileMenuOpen }),
+  setActiveSidebarElement: (ActiveSidebarElement) =>
+    set({ ActiveSidebarElement }),
+}));
 
 export default useUIStore;

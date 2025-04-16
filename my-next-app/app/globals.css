@@ -1,96 +1,257 @@
-@import 'tailwindcss';
-/*
-  ---break---
-*/
-@layer utilities {
-  .blk {
-    color: black;
-  }
-  .bg-blk {
-    background-color: black;
-  }
-}
-/* HTML: <div class="loader"></div> */
-.loader {
-  width: 50px;
-  aspect-ratio: 1;
-  display: grid;
-  border: 4px solid #0000;
-  border-radius: 50%;
-  border-right-color: #0000;
-  animation: l15 1s infinite linear;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.loader::before,
-.loader::after {
-  content: "";
-  grid-area: 1/1;
-  margin: 2px;
-  border: inherit;
-  border-radius: 50%;
-  animation: l15 2s infinite;
-}
+@import "tailwindcss";
 
-.loader::after {
-  margin: 8px;
-  animation-duration: 3s;
-}
-
-@keyframes l15 {
-  100% {
-    transform: rotate(1turn)
-  }
-}
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-/*
-  ---break---
-*/
+/* -------------------------
+   Custom Theme Colors
+-------------------------- */
 :root {
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --font-display: "Poppins", sans-serif;
+  /* Main Color Palette */
+  --background: #03001c;
+  --lightmain: #2d0069;
+  --header: #030014;
+  --transparent: #ffffff0a;
+  --text-main: #e0e0e0;
+  --text-heading: #ffffff;
+  --text-subheading: #b0b0b0;
+
+  /* Accent Colors */
+  --color-mint: #a6cdc6;
+  --color-purple: #a58eff;
+  --color-blue: #5ce1e6;
+  --color-pink: #f9629f;
+  --color-cyan: #82fff4;
+  --color-gold: #dda853;
+  --color-green: #a8e6cf;
 }
 
-/*
-  ---break---
-*/
-.dark {
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecg.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/*
-  ---break---
-*/
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLDD4Z1JlFc-K.woff2)
+    format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+body {
+  font-family: var(--font-display), sans-serif;
+  background-color: var(--background);
+  color: var(--text-main);
+}
+/* -------------------------
+   Custom Utilities
+-------------------------- */
+@layer utilities {
+  /* Backgrounds */
+  .font-display {
+    font-family: var(--font-display), sans-serif;
+  }
+  .bg-gradient-purple {
+    background: linear-gradient(to right, #a201ff, #c666fe);
+  }
+  .bg-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(28px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  }
+  .bg-gradient-cyan {
+    background: linear-gradient(to right, #00d1ff, #82fff4);
+  }
+  .bg-green {
+    background-color: var(--color-green);
+  }
+  .bg-lightmain {
+    background-color: var(--lightmain);
+  }
+  .bg-main {
+    background-color: var(--background);
+  }
+  .bg-transparent {
+    background-color: var(--transparent);
+  }
+  .bg-header {
+    background-color: var(--header);
+  }
+
+  .bg-mint {
+    background-color: var(--color-mint);
+  }
+
+  .bg-purple {
+    background-color: var(--color-purple);
+  }
+
+  .bg-blue {
+    background-color: var(--color-blue);
+  }
+
+  .bg-pink {
+    background-color: var(--color-pink);
+  }
+
+  .bg-cyan {
+    background-color: var(--color-cyan);
+  }
+
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+
+  /* Text colors */
+  .text-main {
+    color: var(--text-main);
+  }
+  .text-green {
+    color: var(--color-green);
+  }
+  .text-heading {
+    color: var(--header);
+  }
+
+  .text-subheading {
+    color: var(--text-subheading);
+  }
+
+  .text-mint {
+    color: var(--color-mint);
+  }
+
+  .text-purple {
+    color: var(--color-purple);
+  }
+
+  .text-blue {
+    color: var(--color-blue);
+  }
+
+  .text-pink {
+    color: var(--color-pink);
+  }
+
+  .text-cyan {
+    color: var(--color-cyan);
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+  }
+  .border-cyan {
+    border-color: var(--color-cyan);
+  }
+  .border-purple {
+    border-color: var(--color-purple);
+  }
+  .border-mint {
+    border-color: var(--color-mint);
+  }
+  .border-pink {
+    border-color: var(--color-pink);
+  }
+  .border-blue {
+    border-color: var(--color-blue);
+  }
+  .border-heading {
+    border-color: var(--header);
+  }
+  .border-green {
+    border-color: var(--color-green);
+  }
+
+  .button-shadow {
+    box-shadow: 0 0 10px #b24bff, 0 0 24px #a201ff;
+  }
+  .animated-gradient-purple {
+    background: linear-gradient(-45deg, #a201ff, #c666fe, #a201ff);
+    background-size: 400% 400%;
+    animation: gradientMove 8s ease infinite;
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+
+/* -------------------------
+   Animations (unchanged)
+-------------------------- */
 @keyframes infinite-scroll {
   0% {
     -webkit-transform: translateX(0);
@@ -104,25 +265,6 @@
 
 .animate-infinite-scroll {
   animation: infinite-scroll 20s linear infinite;
-}
-/* Add your custom styles here */
-
-.animate-typing {
-   /* Prevents text wrapping */
-  border-right: 2px solid black; /* Simulates the cursor */
-  animation: typing 2s steps(30, end), cursor-blink 0.4s step-end infinite alternate;
-}
-
-@keyframes cursor-blink {
-  50% {
-    border-color: transparent;
-  }
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
 }
 
 @keyframes infinite-scroll-reverse {
@@ -138,43 +280,3 @@
 .animate-infinite-scroll-reverse {
   animation: infinite-scroll-reverse 20s linear infinite;
 }
-@theme inline {
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-/*
-  ---break---
-*/
-@layer base {}
-
-@import url('https://fonts.googleapis.com/css2?family=Unna:wght@400;500;600;700&display=swap');
-
-/*
-  ---break---
-*/
-
-
-@layer utilities {
-  .text-content {
-    color: #444545;
-    font-family: 'Unna', serif;
-  }
-}
-
-@layer base {
-  body {
-    font-family: 'Unna', serif;
-  }
-}
-
-/*
-  ---break---
-*/
-

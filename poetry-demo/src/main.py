@@ -5,7 +5,7 @@ from src.router.reducesize import router as reducesize_router
 from src.router.removebackground import router as rmbg_router
 from src.router.enhanceimage import router as enhance_image_router
 app = FastAPI()
-origins = ["http://localhost:3001"]  
+origins = ["http://localhost:3000"]  
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  

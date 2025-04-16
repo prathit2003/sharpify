@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import { signup } from "@/app/actions/auth";
 import useAuthStore from "@/app/store/authatom";
-import usePopupStore from "@/app/store/popupsatom";
 
 export function Signupform({
   className,
@@ -24,7 +23,6 @@ export function Signupform({
     setConfirmPass,
     reset,
   } = useAuthStore();
-  const { seterror } = usePopupStore();
 
   const handlesignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,22 +51,22 @@ export function Signupform({
       }
       reset();
     } catch (error: any) {
-      seterror(error.message || "An unexpected error occurred.");
       console.error(error);
+      throw new Error(error.message);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen py-4">
-      <div className="bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl text-white px-30 py-8 w-full max-w-md">
+    <div className="flex justify-center items-center min-h-screen  py-4">
+      <div className="bg-main shadow-xl rounded-2xl text-white button-shadow px-10 py-8 w-full max-w-lg m-4">
         <form
           onSubmit={handlesignup}
           className={cn("flex flex-col gap-4 text-white", className)}
           {...props}
         >
-          <div className="flex flex-col items-center gap-2 text-center">
-            <h1 className="text-2xl  font-bold">create a account</h1>
-            <p className="text-balance text-sm text-muted-foreground">
+          <div className="flex flex-col items-center gap-2 ">
+            <h1 className="text-3xl text-center font-bold">create account</h1>
+            <p className="text-balance text-center text-sm text-muted-foreground">
               Enter your email below
             </p>
           </div>
@@ -104,7 +102,7 @@ export function Signupform({
               <Input
                 id="password"
                 type="password"
-                placeholder="........."
+                placeholder="password"
                 required
                 onChange={(p) => {
                   setPassword(p.target.value);
@@ -118,15 +116,18 @@ export function Signupform({
               <Input
                 id="password"
                 type="password"
-                placeholder="........."
+                placeholder="confirm password"
                 required
                 onChange={(p) => {
                   setConfirmPass(p.target.value);
                 }}
               />
             </div>
-            <Button type="submit" className="w-full">
-              Login
+            <Button
+              type="submit"
+              className="w-full bg-gradient-purple hover:scale-105"
+            >
+              signup
             </Button>
             <Button variant="outline" className="w-full">
               <svg

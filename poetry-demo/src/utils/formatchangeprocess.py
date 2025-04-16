@@ -6,9 +6,8 @@ from src.services.downloadImage import download_image
 
 def convert_format(image: Image.Image, output_format:str) -> bytes:
     img_bytes = BytesIO()
-    
     image.convert("RGB").save(img_bytes, format=output_format)
-
+    
     return img_bytes.getvalue()
 
 

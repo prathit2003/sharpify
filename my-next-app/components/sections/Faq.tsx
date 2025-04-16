@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Minus, Plus } from "lucide-react";
+import Minus from "@mui/icons-material/Remove";
+import Plus from "@mui/icons-material/Add";
 
 const faqs = [
   {
@@ -53,19 +54,23 @@ export default function FAQ() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 my-20 text-black">
-      <h2 className="text-3xl font-semibold mb-6 text-center text-black">
+    <div className="max-w-3xl mx-auto p-6 my-20 text-white">
+      <h2 className="text-3xl font-semibold mb-12 text-center text-white">
         Frequently Asked Questions
       </h2>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="border-b border-gray-400 pb-3">
+          <div key={index} className="border-b border-heading pb-3">
             <button
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center w-full text-left text-xl p-4 transition duration-300"
             >
-              <span className="text-black text-xl">{faq.question}</span>
-              {openIndex === index ? <Minus size={24} /> : <Plus size={24} />}
+              <span className="text-white text-xl">{faq.question}</span>
+              {openIndex === index ? (
+                <Minus className="w-6 h-6" />
+              ) : (
+                <Plus className="w-6 h-6" />
+              )}
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ${
@@ -74,7 +79,7 @@ export default function FAQ() {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-gray-700 mx-4 px-2">{faq.answer}</p>
+              <p className="text-main mx-4 px-2">{faq.answer}</p>
             </div>
           </div>
         ))}

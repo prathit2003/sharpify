@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       api_secret: process.env.CLOUDINARY_API_SECRET,
       secure: true,
     });
-    const { imageUrl, cropArea } = await req.json(); // Get from frontend
+    const { imageUrl, cropArea } = await req.json();
     const { x, y, width, height } = cropArea;
 
     if (!imageUrl || !x || !y || !width || !height) {
@@ -24,8 +24,6 @@ export async function POST(req: NextRequest) {
 
     const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
     const imageBuffer = Buffer.from(response.data);
-    console.log(response.data); // Debugging line
-    console.log("Image buffer size:", imageBuffer.length); // Debugging line
     const image = sharp(imageBuffer);
     const metadata = await image.metadata();
 
@@ -39,7 +37,6 @@ export async function POST(req: NextRequest) {
       x + width > metadata.width ||
       y + height > metadata.height
     ) {
-      console.log("Invalid crop: ", { x, y, width, height, metadata });
       return NextResponse.json(
         { error: "Invalid crop area", x, y, width, height, metadata },
         { status: 400 }
@@ -65,10 +62,9 @@ export async function POST(req: NextRequest) {
           else resolve(result);
         }
       );
-      uploadStream.end(croppedImageBuffer); // Send the cropped image
+      uploadStream.end(croppedImageBuffer);
     });
 
-    // 4️⃣ **Send the new image URL to frontend**
     return NextResponse.json(
       { croppedImageUrl: uploadResponse.secure_url },
       { status: 200 }

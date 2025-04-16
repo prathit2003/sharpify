@@ -35,7 +35,7 @@ export function LoginForm({
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 bg-white/10 backdrop-blur-lg text-white shadow-xl rounded-2xl",
+        "flex flex-col gap-6 bg-main text-white shadow-xl rounded-2xl",
         className
       )}
       {...props}
@@ -81,10 +81,14 @@ export function LoginForm({
                   }}
                 />
               </div>
-              <Button type="submit" className="w-full" onClick={handlelogin}>
+              <Button
+                type="submit"
+                className="w-full bg-gradient-purple hover:scale-105 hover:cursor-pointer"
+                onClick={handlelogin}
+              >
                 Login
               </Button>
-              <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+              <div className="relative text-center text-sm">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
                   Or continue with
                 </span>
@@ -120,7 +124,7 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
+                <a href="/signup" className="underline underline-offset-4">
                   Sign up
                 </a>
               </div>
@@ -128,7 +132,7 @@ export function LoginForm({
           </form>
           <div className="relative hidden  md:block">
             <img
-              src="/images/background3.jpg"
+              src="/images/banner3.jpg"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover"
             />

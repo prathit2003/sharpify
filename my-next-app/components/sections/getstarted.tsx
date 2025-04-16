@@ -1,6 +1,12 @@
-import { CameraIcon } from "lucide-react";
+"use client";
 
+import { CameraAlt } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 export default function GetStarted() {
+  const router = useRouter();
+  const handlegetstarted = () => {
+    router.push("/dashboard");
+  };
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 mt-10 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -18,6 +24,7 @@ export default function GetStarted() {
             <div className="mt-6 flex max-w-md gap-x-4">
               <button
                 type="submit"
+                onClick={handlegetstarted}
                 className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm  text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
                 get going!
@@ -51,7 +58,7 @@ export default function GetStarted() {
             </div>
             <div className="flex flex-col items-start">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                <CameraIcon className="h-6 w-6 text-indigo-400" />
+                <CameraAlt className="h-6 w-6 text-indigo-400" />
               </div>
               <dt className="mt-4 text-xl text-white">
                 enhance image resolution

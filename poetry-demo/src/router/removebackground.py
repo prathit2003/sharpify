@@ -33,7 +33,7 @@ async def remove_bg(request: ImageRequest):
         secure_url = processed_url.get("secure_url")
         if not secure_url:
             raise ValueError("Failed to retrieve secure URL from Cloudinary response")
-
+        
         return {"url" : secure_url}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

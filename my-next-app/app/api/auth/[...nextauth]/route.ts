@@ -1,25 +1,15 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
-import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { compare } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id?: string;
-      username?: string;
-      email?: string;
-      image?: string;
-    };
-  }
-}
+import jwt from "jsonwebtoken";
 
 export const authOptions: NextAuthOptions = {
-  pages: {
-    signIn: "api/auth/signin",
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60,
   },
-  adapter: PrismaAdapter(prisma),
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -27,63 +17,61 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password");
+      async authorize(credentials) {
+        const { email, password } = credentials ?? {};
+
+        if (!email || !password) {
+          throw new Error("Missing credentials");
         }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email },
         });
 
         if (!user || !user.password) {
-          throw new Error("User not found");
+          throw new Error("Invalid email or password");
         }
 
-        const passwordMatch = await compare(
-          credentials.password,
-          user.password
-        );
-        if (!passwordMatch) {
-          throw new Error("Invalid password.");
+        const isValid = await compare(password, user.password);
+        if (!isValid) {
+          throw new Error("Invalid email or password");
         }
 
-        return {
-          id: user.id.toString(),
-          name: user.username,
-          email: user.email,
-        };
+        return { id: user.id.toString(), email: user.email };
       },
     }),
   ],
-  session: {
-    strategy: "jwt",
-    maxAge: 7 * 24 * 60 * 60,
-    updateAge: 24 * 60 * 60,
-  },
-  jwt: {
-    secret: process.env.NEXTAUTH_SECRET,
-  },
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        const signedToken = jwt.sign(
+          { sub: user.id, email: user.email },
+          process.env.NEXTAUTH_SECRET!,
+          { expiresIn: "7d" }
+        );
+        token.accessToken = signedToken;
+        token.email = user.email;
       }
       return token;
     },
+
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id as string;
+        session.user.email = token.email as string;
       }
+      (session as any).accessToken = token.accessToken;
       return session;
     },
     async redirect({ url, baseUrl }) {
-      if (url.startsWith(baseUrl)) {
-        return url;
-      }
-      return `${baseUrl}/dashboard`;
+      return "/dashboard";
     },
   },
+
+  pages: {
+    signIn: "/signin",
+  },
+
   secret: process.env.NEXTAUTH_SECRET,
 };
 

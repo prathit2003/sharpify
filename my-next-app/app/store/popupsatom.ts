@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface PopupState {
-  Errorpopup: boolean;
-  setEroorpopup: (Errorpopup: boolean) => void;
+  Priviewpopup: boolean;
+  setPriviewpopup: (Errorpopup: boolean) => void;
   SignUppopup: boolean;
   setSignUppopup: (SignUppopup: boolean) => void;
   SignInpopup: boolean;
@@ -10,18 +10,18 @@ interface PopupState {
   closepopup: () => void;
 }
 const initialState = {
-  Errorpopup: false,
+  Priviewpopup: false,
   SignUppopup: false,
   SignInpopup: false,
 };
 const usePopupStore = create<PopupState>((set) => ({
   ...initialState,
-  setEroorpopup: (Errorpopup) => set({ Errorpopup }),
+  setPriviewpopup: (Priviewpopup) => set({ Priviewpopup }),
   setSignUppopup: (SignUppopup) => set({ SignUppopup }),
   setSignInpopup: (SignInpopup) => set({ SignInpopup }),
   closepopup: () =>
     set({
-      Errorpopup: false,
+      Priviewpopup: false,
       SignUppopup: false,
       SignInpopup: false,
     }),

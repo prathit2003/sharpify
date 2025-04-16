@@ -2,12 +2,12 @@
 
 import useCropStore from "@/app/store/cropatom";
 import useImageStore from "@/app/store/fileupload";
-import ImageCropper from "@/components/imagecropper";
+import ImageCropper from "@/components/ui/imagecropper";
 import { Button } from "@/components/ui/button";
 import { CldUploadWidget } from "next-cloudinary";
-
 export default function CropRender() {
   const { setUploadedUrl, uploadedUrl } = useImageStore();
+
   const {
     crop,
     zoom,
@@ -21,50 +21,14 @@ export default function CropRender() {
       {uploadedUrl ? (
         <ImageCropper imageUrl={uploadedUrl} />
       ) : (
-        <div className="flex justify-evenly items-center gap-6 p-4">
-          <div className=" flex flex-col items-center justify-center rounded-lg bg-black backdrop-blur-lg shadow-sm border-2 p-4 w-full aspect-square">
-            <div className=" self-center flex flex-col gap-4">
-              <div className="grid grid-cols-2 gap-8">
-                <div>
-                  <label className="block text-lg m-2 text-white">X</label>
-                  <input
-                    type="text"
-                    value={crop.x}
-                    disabled
-                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-lg m-2 text-white">Y</label>
-                  <input
-                    type="text"
-                    value={crop.y}
-                    disabled
-                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-lg m-2 text-white">Width</label>
-                  <input
-                    type="text"
-                    value={croppedAreaPixels?.width || 0}
-                    disabled
-                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-lg m-2 text-white">Height</label>
-                  <input
-                    type="text"
-                    value={croppedAreaPixels?.height || 0}
-                    disabled
-                    className="input-field border-1 rounded-sm shadow-sm p-2 text-white"
-                  />
-                </div>
-              </div>
+        <div className="flex justify-center items-center p-4">
+          <div className="flex flex-col items-center gap-4 w-full p-8 text-center bg-none ">
+            <div>
+              <h1 className="text-4xl font-semibold text-white">Crop</h1>
+              <p className="text-lg font-medium text-grey-400">
+                crop your image without loosing quality, using our AI.
+              </p>
             </div>
-          </div>
-          <div className="flex justify-center items-center w-full p-2 aspect-square bg-black backdrop-blur-lg shadow-sm  rounded-lg border-2  ">
             <CldUploadWidget
               uploadPreset="prathit_web_images"
               onSuccess={(result) => {
@@ -88,7 +52,7 @@ export default function CropRender() {
                 return (
                   <Button
                     variant={"outline"}
-                    className="group relative items-center gap-2 overflow-hidden bg-muted-foreground/10 text-muted-foreground transition-all hover:scale-105  active:scale-95 text-white"
+                    className=" items-center gap-2 overflow-hidden bg-gradient-purple transition-all hover:scale-105  active:scale-95 text-white"
                     size={"lg"}
                     onClick={handleOnClick}
                   >
@@ -107,7 +71,6 @@ export default function CropRender() {
                     >
                       <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12v-9" />
                     </svg>
-                    <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-card-foreground/10 opacity-0 transition-opacity group-hover:opacity-100"></span>
                   </Button>
                 );
               }}

@@ -30,7 +30,6 @@ async def upload_image(image_input, format: str = "png") -> str:
         img_byte_array = BytesIO()
         image.save(img_byte_array, format=format.upper())
         img_byte_array.seek(0)
-
         
         upload_result = await asyncio.to_thread(
             cloudinary.uploader.upload,

@@ -24,7 +24,7 @@ def compress_with_opencv(image_bytes: bytes, format: str = "JPEG", quality: int 
 
     return BytesIO(encoded_img.tobytes())
 
-async def process_image(image_url: str, format: str = "JPEG", quality: int = 70):
+async def process_image(image_url: str, format: str = "JPEG", quality: int = 50):
     image_bytes = download_image(image_url)
     compressed_image = compress_with_opencv(image_bytes, format=format, quality=quality)
     return compressed_image

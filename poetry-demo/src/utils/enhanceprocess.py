@@ -1,32 +1,52 @@
-# from src.services.cloudinery_upload import upload_image
-from fastapi import FastAPI
+import uuid
+import os
 from fastapi import HTTPException
-# import torch
-# import numpy as np
-# import cv2
-# from PIL import Image
-# from src.services.downloadImage import download_image
-# from realesrgan import RealESRGAN
+from src.services.downloadImage import download_image
+from src.services.cloudinery_upload import upload_image
+from PIL import Image
+from io import BytesIO
+import numpy as np
+import torch
 
-# MODEL_PATH = ""
+from basicsr.archs.rrdbnet_arch import RRDBNet
+from realesrgan import RealESRGANer
 
-# def enhance_image(image: Image.Image) -> Image.Image:
-#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-#     model = RealESRGAN(device, scale=4)
-#     model.load_weights(MODEL_PATH)
+current_dir = os.path.dirname(__file__)
+model_path = os.path.abspath(os.path.join(current_dir, "..", "weights", "RealESRGAN_x4plus.pth"))
 
-#     image = np.array(image)
-#     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-#     enhanced_image = model.predict(image)
+state_dict = torch.load(model_path, map_location=torch.device('cpu'))['params_ema']
 
-#     return Image.fromarray(cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2RGB))
+model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=4)
+model.load_state_dict(state_dict, strict=True)
+upsampler = RealESRGANer(
+    scale=4,
+    model_path=model_path,
+    model=model,
+    tile=0,
+    pre_pad=0,
+    half=False,
+)
 
-# async def process_image(image_url: str) -> str:
-#     try:
-#         image = download_image(image_url)
-#         enhanced_image = enhance_image(image)
-#         new_image_url = await upload_image(enhanced_image)
-#         return new_image_url
+async def process_enhance_image_from_url(image_url: str) -> str:
+    try:
+        # Step 1: Download image
+        image: Image.Image = download_image(image_url)
+        image = image.convert("RGB")
+        image_np = np.array(image)
 
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
+        # Step 2: Enhance image
+        output_np, _ = upsampler.enhance(image_np, outscale=4)
+        output_image = Image.fromarray(output_np)
+
+        # Step 3: Save to bytes
+        img_bytes = BytesIO()
+        output_image.save(img_bytes, format="PNG")
+        img_bytes.seek(0)
+
+        # Step 4: Upload image
+        final_url = await upload_image(img_bytes.getvalue(), "png")
+
+        return final_url
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Enhancement failed: {str(e)}")
