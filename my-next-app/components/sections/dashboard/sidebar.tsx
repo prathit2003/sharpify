@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import React from "react";
-import HomeIcon from "@mui/icons-material/Home";
-import ShareIcon from "@mui/icons-material/Share";
-import MyFilesIcon from "@mui/icons-material/Folder";
 import { useRouter } from "next/navigation";
 import useUIStore from "@/app/store/UIatom";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import PhotoSizeSelectLargeIcon from "@mui/icons-material/PhotoSizeSelectLarge";
+import FormatPaintIcon from "@mui/icons-material/FormatPaint";
+import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import Link from "next/link";
 
 const Sidebar = () => {
@@ -14,13 +15,26 @@ const Sidebar = () => {
   const router = useRouter();
 
   const elements = [
-    { title: "Home", icon: <HomeIcon fontSize="small" />, link: "" },
     {
-      title: "Files",
-      icon: <MyFilesIcon fontSize="small" />,
-      link: "/my-files",
+      title: "enhance",
+      icon: <AutoAwesomeIcon fontSize="small" />,
+      link: "dashboard?section=enhance",
     },
-    { title: "Share", icon: <ShareIcon fontSize="small" />, link: "/share" },
+    {
+      title: "resize",
+      icon: <PhotoSizeSelectLargeIcon fontSize="small" />,
+      link: "/dashboard?section=resize",
+    },
+    {
+      title: "remove background",
+      icon: <FormatPaintIcon fontSize="small" />,
+      link: "/dashboard?section=rembg",
+    },
+    {
+      title: "change format",
+      icon: <FormatColorFillIcon fontSize="small" />,
+      link: "/dashboard?section=changeformat",
+    },
   ];
 
   const handleClick = (index: number) => {
@@ -29,7 +43,6 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col items-start justify-between h-full rounded-2xl bg-header border px-2 py-3 sm:px-4 sm:py-4">
-      {/* Pro Banner */}
       <div className="bg-main w-full flex items-center justify-center h-1/3 rounded-xl my-2 p-2">
         <div className="flex flex-col items-center space-y-3">
           <div className="flex items-center space-x-2">
@@ -59,7 +72,7 @@ const Sidebar = () => {
         {elements.map((element, index) => (
           <Link
             key={index}
-            href={`/dashboard${element.link}`}
+            href={`${element.link}`}
             onClick={() => handleClick(index)}
             className={`flex items-center gap-2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg cursor-pointer w-full transition-all
               ${

@@ -35,14 +35,14 @@ export function LoginForm({
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 bg-main text-white shadow-xl rounded-2xl",
+        "flex flex-col gap-6 text-white shadow-xl rounded-2xl",
         className
       )}
       {...props}
     >
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="my-4 p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -130,9 +130,9 @@ export function LoginForm({
               </div>
             </div>
           </form>
-          <div className="relative hidden  md:block">
+          <div className="relative hidden md:block w-full h-full">
             <img
-              src="/images/banner3.jpg"
+              src="/images/signin.jpg"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover"
             />

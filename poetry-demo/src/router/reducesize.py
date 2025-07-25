@@ -1,47 +1,27 @@
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from src.utils.reducesizeprocess import process_image
-from typing import Optional
-from dotenv import load_dotenv
-import cloudinary
-import cloudinary.uploader
-import os
-import asyncio
-
-load_dotenv()
-
-cloudinary.config(
-    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
-    api_key=os.getenv("CLOUDINARY_API_KEY"),
-    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
-    secure=True
-)
 
 router = APIRouter()
 
-class ImageRequest(BaseModel):
-    image_url: str
-    format: Optional[str] = "JPEG"
-
 @router.post("/reducesize")
-async def reduce_size(request: ImageRequest):
-  try : 
-    final_img = await process_image(request.image_url, request.format)
-    response =  await asyncio.to_thread(
-            cloudinary.uploader.upload,
-            final_img,
-            folder="enhanced_images"
-        )
-    secure_url = response.get("secure_url")
-    if not secure_url:
-        raise ValueError("Failed to retrieve secure URL from Cloudinary response")
+async def reduce_size(
+    file: UploadFile = File(...),
+    format: str = Form(...)
+):
+    try:
 
-    return {"url":secure_url}
-  except HTTPException as http_err:
-        raise http_err  
+        contents = await file.read()
+        if not contents:
+            raise HTTPException(status_code=400, detail="No file content provided")
 
-  except cloudinary.exceptions.Error as cloud_err:
-        raise HTTPException(status_code=500, detail=f"Cloudinary upload failed: {str(cloud_err)}")
+        if len(contents) > 5 * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="File too large")
 
-  except Exception as e:
+        final_img_url = await process_image(contents, format)
+        if not final_img_url:
+            raise ValueError("Failed to retrieve secure URL from S3")
+
+        return {"url": final_img_url}
+
+    except Exception as e:
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")

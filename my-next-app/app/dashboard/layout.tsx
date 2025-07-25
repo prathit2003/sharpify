@@ -15,10 +15,10 @@ export default function DashboardLayout({
       <Topbar />
 
       <div className="flex flex-grow pt-20">
-        <div className="hidden md:flex md:w-1/5  md:p-4 md:bg-main ">
+        <div className="hidden md:flex md:w-1/5 md:p-2 md:bg-main ">
           <Sidebar />
         </div>
-        <main className="flex-grow p-4 sm:w-4/5 ">{children}</main>
+        <main className="flex-grow p-2 sm:w-4/5 ">{children}</main>
       </div>
     </div>
   );

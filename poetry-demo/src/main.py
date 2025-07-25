@@ -1,9 +1,11 @@
 from fastapi import FastAPI
+from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from src.router.formatchange import router as formatchange_router
 from src.router.reducesize import router as reducesize_router
 from src.router.removebackground import router as rmbg_router
 from src.router.enhanceimage import router as enhance_image_router
+from src.utils.model_loader import load_upsampler
 app = FastAPI()
 origins = ["http://localhost:3000"]  
 app.add_middleware(
@@ -14,6 +16,13 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state.upsampler = load_upsampler()
+    yield 
+
+app = FastAPI(lifespan=lifespan)
+    
 @app.get("/health")
 def root():
     return {"message": "Hello World"}

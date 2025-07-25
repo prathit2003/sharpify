@@ -18,7 +18,7 @@
 
   /* Accent Colors */
   --color-mint: #a6cdc6;
-  --color-purple: #a58eff;
+  --color-purple: #c16fef;
   --color-blue: #5ce1e6;
   --color-pink: #f9629f;
   --color-cyan: #82fff4;
@@ -184,6 +184,25 @@ body {
   }
   .border-green {
     border-color: var(--color-green);
+  }
+  .dashed-border {
+    border: 4px dashed;
+    border-radius: 0.75rem; /* same as rounded-xl */
+    border-image-slice: 1;
+    border-image-source: repeating-conic-gradient(
+      from 0deg,
+      #a201ff 0deg 10deg,
+      transparent 10deg 20deg,
+      #c666fe 20deg 30deg,
+      transparent 30deg 40deg
+    );
+  }
+
+  .solid-round-border {
+    border: 4px solid;
+    border-radius: 0.75rem;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #a201ff, #c666fe);
   }
 
   .button-shadow {

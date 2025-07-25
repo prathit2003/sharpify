@@ -1,17 +1,14 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
+
+from fastapi import APIRouter, UploadFile, File, Form
 from typing import Optional
 from src.utils.formatchangeprocess import process_image
 
 router = APIRouter()
 
-class ImageRequest(BaseModel):
-    image_url: str
-    format: Optional[str] = 'png'
-    
 
 @router.post("/changeformat")
-async def change_format(request: ImageRequest):
-    print(ImageRequest)
-    processed_url = await process_image(request.image_url, request.format)
+async def change_format(file: UploadFile = File(...),
+    format: str = Form(...)):
+    contents = await file.read()
+    processed_url = await process_image(contents,format)
     return {"url":processed_url}

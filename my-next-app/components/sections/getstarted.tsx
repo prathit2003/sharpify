@@ -9,13 +9,13 @@ export default function GetStarted() {
   };
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 mt-10 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+      <div className="w-full px-6 lg:px-8">
+        <div className="mx-8 grid  grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-4xl  tracking-tight text-white">
+            <h2 className="text-xl lg:text-4xl  tracking-tight text-white">
               discover the power of AI image enhancement
             </h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-4 text-sm lg:text-lg text-gray-300">
               Enhance your images effortlessly with our AI-powered tool. Say
               goodbye to manual editing and hello to stunning results in
               seconds. Experience the future of image enhancement today and
@@ -25,9 +25,9 @@ export default function GetStarted() {
               <button
                 type="submit"
                 onClick={handlegetstarted}
-                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm  text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="flex-none rounded-2xl bg-gradient-purple px-3.5 py-2.5 text-sm font-bold  text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
               >
-                get going!
+                Get Started
               </button>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function GetStarted() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="h-6 w-6 text-indigo-400"
+                  className="h-6 w-6 text-purple"
                 >
                   <path
                     strokeLinecap="round"
@@ -49,8 +49,10 @@ export default function GetStarted() {
                   />
                 </svg>
               </div>
-              <dt className="mt-4 text-xl text-white">colorize your images</dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dt className="mt-4 text-xl lg:text-4xl  text-white">
+                colorize your images
+              </dt>
+              <dd className="mt-2 text-sm lg:text-lg text-gray-400">
                 Bring your black-and-white photos to life with vibrant colors
                 using our advanced AI technology. Transform old memories into
                 vivid, colorful moments effortlessly.
@@ -58,12 +60,12 @@ export default function GetStarted() {
             </div>
             <div className="flex flex-col items-start">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                <CameraAlt className="h-6 w-6 text-indigo-400" />
+                <CameraAlt className="h-6 w-6 text-purple-500 " />
               </div>
-              <dt className="mt-4 text-xl text-white">
+              <dt className="mt-4 text-xl lg:text-4xl text-white">
                 enhance image resolution
               </dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dd className="mt-2 text-sm lg:text-lg text-gray-400">
                 Boost the resolution of your images without losing quality. Our
                 AI algorithms intelligently enhance details, making your photos
                 sharper and more vibrant.

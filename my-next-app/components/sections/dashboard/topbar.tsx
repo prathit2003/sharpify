@@ -10,7 +10,7 @@ const Topbar = () => {
         <img
           src="/icons/sharpify.svg"
           alt="Icon"
-          className="h-8 w-15 md:h-14 md:w-30"
+          className="h-4 w-15 md:h-10 md:w-30"
         />
       </div>
       <div className="flex items-center space-x-4">

@@ -54,22 +54,24 @@ export default function FAQ() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 my-20 text-white">
-      <h2 className="text-3xl font-semibold mb-12 text-center text-white">
+    <div className="max-w-3xl p-10 lg:p-12 my-20 text-white">
+      <h2 className="lg:text-3xl sm:text-lg md:text-xl font-semibold mb-12 text-center text-white">
         Frequently Asked Questions
       </h2>
-      <div className="space-y-4">
+      <div className="lg:space-y-4 space-y-2">
         {faqs.map((faq, index) => (
           <div key={index} className="border-b border-heading pb-3">
             <button
               onClick={() => toggleFAQ(index)}
-              className="flex justify-between items-center w-full text-left text-xl p-4 transition duration-300"
+              className="flex justify-between items-center w-full text-left lg:text-xl md:text-lg text-sm py-4 px-15 md:px-4 transition duration-300"
             >
-              <span className="text-white text-xl">{faq.question}</span>
+              <span className="text-white lg:text-xl md:text-lg text-sm">
+                {faq.question}
+              </span>
               {openIndex === index ? (
-                <Minus className="w-6 h-6" />
+                <Minus className="lg:w-6 lg:h-6 md:w-4 md:h-4 w-3 h-3" />
               ) : (
-                <Plus className="w-6 h-6" />
+                <Plus className="lg:w-6 lg:h-6 md:w-4 md:h-4 w-3 h-3" />
               )}
             </button>
             <div
@@ -79,7 +81,9 @@ export default function FAQ() {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-main mx-4 px-2">{faq.answer}</p>
+              <p className="text-main lg:text-xl md:text-lg text-sm mx-4 px-2">
+                {faq.answer}
+              </p>
             </div>
           </div>
         ))}
