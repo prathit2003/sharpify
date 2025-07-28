@@ -24,16 +24,6 @@ class ImageRequest(BaseModel):
 @router.post("/removebackground")
 async def remove_bg(request: ImageRequest):
     try:
-        processed_url = await asyncio.to_thread(
-            cloudinary.uploader.upload,
-            request.image_url,
-            asset_folder="enhanced_images",
-            background_removal="cloudinary_ai"
-        )
-        secure_url = processed_url.get("secure_url")
-        if not secure_url:
-            raise ValueError("Failed to retrieve secure URL from Cloudinary response")
-        
-        return {"url" : secure_url}
+        return {"url" : "implement"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

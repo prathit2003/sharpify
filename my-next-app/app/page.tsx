@@ -10,7 +10,7 @@ import Hero from "@/components/sections/hero";
 export default async function Home() {
   return (
     <>
-      <div className=" flex flex-col items-center min-h-screen bg-[#03001C]">
+      <div className="h-screen flex flex-col items-center bg-main">
         <Navbar></Navbar>
         <Hero></Hero>
         <ThreeCard></ThreeCard>

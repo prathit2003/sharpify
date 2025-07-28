@@ -1,4 +1,3 @@
-# src/utils/model_loader.py
 import os
 import torch
 from basicsr.archs.rrdbnet_arch import RRDBNet
@@ -9,8 +8,10 @@ def load_upsampler():
     model_path = os.path.abspath(os.path.join(current_dir, "..", "weights", "RealESRGAN_x4plus.pth"))
     state_dict = torch.load(model_path, map_location=torch.device('cpu'))['params_ema']
 
-    model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64,
-                    num_block=23, num_grow_ch=32, scale=4)
+    model = RRDBNet(
+        num_in_ch=3, num_out_ch=3, num_feat=64,
+        num_block=23, num_grow_ch=32, scale=4
+    )
     model.load_state_dict(state_dict, strict=True)
 
     return RealESRGANer(

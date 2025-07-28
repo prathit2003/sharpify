@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useSearchParams, useRouter } from "next/navigation";
-import Link from "next/link";
 import Enhance from "@/components/sections/dashboard/enhance";
 import Resize from "@/components/sections/dashboard/resize";
 import Removebg from "@/components/sections/dashboard/removebackground";

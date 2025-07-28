@@ -1,7 +1,7 @@
 from io import BytesIO
 from PIL import Image
 from fastapi import HTTPException
-from src.services.cloudinery_upload import upload_to_s3
+from src.services.s3_upload import upload_to_s3
 
 def convert_format(image: Image.Image, output_format: str) -> bytes:
     img_bytes = BytesIO()

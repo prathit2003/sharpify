@@ -1,27 +1,47 @@
 "use client";
-
-import useUIStore from "@/app/store/UIatom";
 import Component from "../ui/3iconcomponent";
+import { motion } from "framer-motion";
 
 const ThreeCard = () => {
-  const {} = useUIStore();
   return (
-    <div className="flex flex-col lg:flex-row items-center space-y-10 md:space-y-12 lg:space-y-0 lg:space-x-8 p-2 my-10 lg:p-10">
-      <Component
-        iconPath="icons/CameraEnhance.svg"
-        Heading="powered by real esrgan "
-        SubHeading="real esrgan AI Enhance is trained to identify and correct issues such as noise, blurriness, and low contrast."
-      />
-      <Component
-        iconPath="icons/2xicon.svg"
-        Heading="Momentary resolution increase"
-        SubHeading="Boost pixel count and get that crispy clear image quality in a matter of seconds."
-      />
-      <Component
-        iconPath="icons/SparklingDiamond.svg"
-        Heading="Increased detail, decreased blur"
-        SubHeading="Get rid of blur and keep precious moments in high resolution with the AI photo enhancer."
-      />
+    <div className="flex flex-col items-center space-y-8 p-2 bg-secondary w-full rounded-3xl">
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-center text-4xl font-semibold text-main mt-16 leading-snug"
+      >
+        Clarity You Can See,
+        <br />
+        Speed You Can Feel!
+      </motion.h1>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-[90vw] mx-auto my-16"
+      >
+        <Component
+          type="generate"
+          Heading="AI Generation"
+          SubHeading="Create stunning visuals and assets using intelligent generation tools."
+        />
+
+        <Component
+          type="enhance"
+          Heading="Image Enhancement"
+          SubHeading="Restore clarity, resolution, and detail with cutting-edge AI."
+        />
+
+        <Component
+          type="tools"
+          Heading="Utility Tools"
+          SubHeading="All-in-one tools for background removal, size reduction, and changing format."
+        />
+      </motion.div>
     </div>
   );
 };

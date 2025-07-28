@@ -1,31 +1,31 @@
+/* ============================================
+   IMPORTS
+============================================ */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 @import "tailwindcss";
 
-/* -------------------------
-   Custom Theme Colors
--------------------------- */
+/* ============================================
+   CUSTOM THEME VARIABLES
+============================================ */
+
 :root {
   --font-display: "Poppins", sans-serif;
-  /* Main Color Palette */
-  --background: #03001c;
-  --lightmain: #2d0069;
-  --header: #030014;
-  --transparent: #ffffff0a;
-  --text-main: #e0e0e0;
-  --text-heading: #ffffff;
-  --text-subheading: #b0b0b0;
 
-  /* Accent Colors */
-  --color-mint: #a6cdc6;
-  --color-purple: #c16fef;
-  --color-blue: #5ce1e6;
-  --color-pink: #f9629f;
-  --color-cyan: #82fff4;
-  --color-gold: #dda853;
-  --color-green: #a8e6cf;
+  /* Dark theme as default */
+  --bg: #242124;
+  --text: #ffffff;
+  --primary: #22c55e;
+  --primary-light: #86efac;
+  --accent: #ff6b6b;
+  --secondary: #ff9900;
+  --muted-text: #242124;
+  --header-bg: #1c1a1c;
+  --card-bg: #2e2b2f;
+  --border: #3b383b;
 }
-
+/* ============================================
+   CUSTOM FONTS
+============================================ */
 @font-face {
   font-family: "Poppins";
   font-style: normal;
@@ -49,6 +49,7 @@
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 /* latin-ext */
 @font-face {
   font-family: "Poppins";
@@ -62,138 +63,117 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* ============================================
+   BASE STYLES
+============================================ */
+
 body {
   font-family: var(--font-display), sans-serif;
-  background-color: var(--background);
-  color: var(--text-main);
+  background-color: var(--bg);
 }
-/* -------------------------
-   Custom Utilities
--------------------------- */
+
+/* ============================================
+   CUSTOM UTILITIES
+============================================ */
 @layer utilities {
   /* Backgrounds */
-  .font-display {
-    font-family: var(--font-display), sans-serif;
-  }
-  .bg-gradient-purple {
-    background: linear-gradient(to right, #a201ff, #c666fe);
-  }
-  .bg-glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(28px);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-  }
-  .bg-gradient-cyan {
-    background: linear-gradient(to right, #00d1ff, #82fff4);
-  }
-  .bg-green {
-    background-color: var(--color-green);
-  }
-  .bg-lightmain {
-    background-color: var(--lightmain);
-  }
+  /* Background Utilities */
   .bg-main {
-    background-color: var(--background);
+    background-color: var(--bg);
   }
-  .bg-transparent {
-    background-color: var(--transparent);
-  }
-  .bg-header {
-    background-color: var(--header);
+  .bg-primary {
+    background-color: var(--primary);
   }
 
-  .bg-mint {
-    background-color: var(--color-mint);
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .bg-purple {
-    background-color: var(--color-purple);
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: fade-in-up 0.8s ease-out forwards;
   }
 
-  .bg-blue {
-    background-color: var(--color-blue);
+  .bg-secondary-glass {
+    background-color: rgba(255, 153, 0, 0.12); /* Light base */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .bg-pink {
-    background-color: var(--color-pink);
+  /* Slightly lighter variation for optional visual break */
+  .bg-secondary-glass-lightest {
+    background-color: rgba(255, 153, 0, 0.08);
   }
 
-  .bg-cyan {
-    background-color: var(--color-cyan);
+  /* Slightly darker for depth */
+  .bg-secondary-glass-mid {
+    background-color: rgba(255, 153, 0, 0.18);
   }
 
-  .bg-gold {
-    background-color: var(--color-gold);
+  .bg-secondary-glass:hover {
+    background-color: rgba(255, 153, 0, 0.24);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
   }
 
-  /* Text colors */
+  /* Text Utilities */
   .text-main {
+    color: var(--text);
+  }
+  .text-primary-light {
+    color: var(--primary-light);
+  }
+
+  .text-dark {
+    color: var(--muted-text);
+  }
+  .text-primary {
+    color: var(--primary);
+  }
+  .text-accent {
+    color: var(--accent);
+  }
+  .text-secondary {
+    color: var(--secondary);
+  }
+  .hover\:text-primary:hover {
+    color: var(--primary);
+  }
+
+  .hover\:text-main:hover {
     color: var(--text-main);
   }
-  .text-green {
-    color: var(--color-green);
+  /* Border Utilities */
+  .border-color {
+    border-color: var(--border);
   }
-  .text-heading {
-    color: var(--header);
-  }
-
-  .text-subheading {
-    color: var(--text-subheading);
-  }
-
-  .text-mint {
-    color: var(--color-mint);
-  }
-
-  .text-purple {
-    color: var(--color-purple);
-  }
-
-  .text-blue {
-    color: var(--color-blue);
-  }
-
-  .text-pink {
-    color: var(--color-pink);
-  }
-
-  .text-cyan {
-    color: var(--color-cyan);
-  }
-
-  .text-gold {
-    color: var(--color-gold);
-  }
-  .border-cyan {
-    border-color: var(--color-cyan);
-  }
-  .border-purple {
-    border-color: var(--color-purple);
-  }
-  .border-mint {
-    border-color: var(--color-mint);
-  }
-  .border-pink {
-    border-color: var(--color-pink);
-  }
-  .border-blue {
-    border-color: var(--color-blue);
-  }
-  .border-heading {
-    border-color: var(--header);
-  }
-  .border-green {
-    border-color: var(--color-green);
+  .border-secondary {
+    border: 2px solid;
+    border-color: var(--secondary);
   }
   .dashed-border {
     border: 4px dashed;
-    border-radius: 0.75rem; /* same as rounded-xl */
+    border-radius: 0.75rem;
     border-image-slice: 1;
     border-image-source: repeating-conic-gradient(
       from 0deg,
-      #a201ff 0deg 10deg,
+      var(--primary) 0deg 10deg,
       transparent 10deg 20deg,
-      #c666fe 20deg 30deg,
+      var(--primary-light, #c666fe) 20deg 30deg,
       transparent 30deg 40deg
     );
   }
@@ -202,16 +182,16 @@ body {
     border: 4px solid;
     border-radius: 0.75rem;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #a201ff, #c666fe);
+    border-image-source: linear-gradient(
+      to right,
+      var(--primary),
+      var(--primary-light, #c666fe)
+    );
   }
-
+  /* Shadows */
   .button-shadow {
-    box-shadow: 0 0 10px #b24bff, 0 0 24px #a201ff;
-  }
-  .animated-gradient-purple {
-    background: linear-gradient(-45deg, #a201ff, #c666fe, #a201ff);
-    background-size: 400% 400%;
-    animation: gradientMove 8s ease infinite;
+    box-shadow: 0 0 10px var(--primary-light, #b24bff),
+      0 0 24px var(--primary, #a201ff);
   }
 
   @keyframes gradientMove {
@@ -225,6 +205,8 @@ body {
       background-position: 0% 50%;
     }
   }
+
+  /* Font Weights */
   .poppins-thin {
     font-family: "Poppins", sans-serif;
     font-weight: 100;
@@ -266,36 +248,51 @@ body {
     font-weight: 700;
     font-style: normal;
   }
-}
-
-/* -------------------------
-   Animations (unchanged)
--------------------------- */
-@keyframes infinite-scroll {
-  0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(calc(-50% - 8px));
-    transform: translateX(calc(-50% - 8px));
-  }
-}
-
-.animate-infinite-scroll {
-  animation: infinite-scroll 20s linear infinite;
-}
-
-@keyframes infinite-scroll-reverse {
-  0% {
-    transform: translateX(calc(-50% - 8px));
+  /* ============================================
+   KEYFRAMES & ANIMATIONS
+============================================ */
+  @keyframes infinite-scroll {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(calc(-50% - 8px));
+      transform: translateX(calc(-50% - 8px));
+    }
   }
 
-  100% {
-    transform: translateX(0);
+  .animate-infinite-scroll {
+    animation: infinite-scroll 20s linear infinite;
   }
-}
 
-.animate-infinite-scroll-reverse {
-  animation: infinite-scroll-reverse 20s linear infinite;
+  @keyframes infinite-scroll-reverse {
+    0% {
+      transform: translateX(calc(-50% - 8px));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-infinite-scroll-reverse {
+    animation: infinite-scroll-reverse 20s linear infinite;
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
 }

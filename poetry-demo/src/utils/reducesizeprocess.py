@@ -3,7 +3,7 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 from fastapi import HTTPException
-from src.services.cloudinery_upload import upload_to_s3
+from src.services.s3_upload import upload_to_s3
 
 def compress_with_opencv(image_bytes: bytes, format: str = "JPEG", quality: int = 70) -> BytesIO:
     nparr = np.frombuffer(image_bytes, np.uint8)

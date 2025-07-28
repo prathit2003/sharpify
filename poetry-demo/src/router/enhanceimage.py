@@ -11,8 +11,8 @@ async def enhance_image(request: Request, file: UploadFile = File(...)):
 
         if not file.filename.endswith(('.png', '.jpg', '.jpeg')):
             raise HTTPException(status_code=400, detail="Invalid file type. Only PNG, JPG, and JPEG are allowed.")
+        
         upsampler = request.app.state.upsampler
-
         processed_url = await process_enhance_image(file, upsampler)
 
         if not processed_url:
