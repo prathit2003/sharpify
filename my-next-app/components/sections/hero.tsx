@@ -1,10 +1,9 @@
 "use client";
 import { Button } from "../ui/button";
-
 const Hero = () => {
   return (
     <>
-      <div className="flex items-center justify-center p-12">
+      <div className="flex items-center justify-center p-12 my-8">
         <section className="flex flex-col-reverse lg:flex-row justify-around items-center max-w-[80vw] lg:justify-between lg:max-w-[90vw] my-8 lg:my-12 mx-auto gap-8 lg:gap-16">
           {/* Left/bottom (Text Content) */}
           <div className="text-center lg:text-left max-w-2xl space-y-4 lg:space-y-6">
@@ -42,7 +41,7 @@ const Hero = () => {
           </div>
 
           {/* Right/top (Image Grid) */}
-          <div className="grid grid-cols-3 gap-3 max-w-[70vw] lg:max-w-xl xl:max-w-2xl">
+          <div className="grid grid-cols-3 gap-3 max-w-[70vw] lg:max-w-xl ">
             {/* Column 1 */}
             <div className="flex flex-col gap-4">
               <div className="w-full aspect-[3/4] p-2">

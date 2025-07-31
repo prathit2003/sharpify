@@ -64,7 +64,7 @@ const Component: React.FC<IconGalleryProps> = ({
   return (
     <div
       ref={ref}
-      className="opacity-0 group relative flex flex-col justify-between p-6 rounded-2xl border-2 border:border-white bg-secondary-glass-lightest text-main hover:bg-secondary-glass transition-all duration-300 shadow-xl hover:shadow-2xl aspect-[4/3] transform hover:scale-[1.02]"
+      className="opacity-0 group relative flex flex-col justify-between p-8 rounded-2xl border-2 border:border-white bg-secondary-glass-lightest text-main hover:bg-secondary-glass transition-all duration-300 shadow-xl hover:shadow-2xl aspect-[4/3] transform hover:scale-[1.02]"
     >
       {/* Top icons */}
       <div className="flex items-center justify-between mb-6">

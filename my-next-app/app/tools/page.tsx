@@ -30,19 +30,19 @@ const Home = () => {
 
   const sectionMap = [
     {
-      key: "enhance",
+      key: "enhanceimage",
       title: "Enhance",
       component: <Enhance />,
       icon: <AutoAwesomeIcon fontSize={iconSize} />,
     },
     {
-      key: "resize",
+      key: "reducesize",
       title: "Resize",
       component: <Resize />,
       icon: <PhotoSizeSelectLargeIcon fontSize={iconSize} />,
     },
     {
-      key: "rembg",
+      key: "removebackground",
       title: "Remove Background",
       component: <Removebg />,
       icon: <FormatColorFillIcon fontSize={iconSize} />,
@@ -60,7 +60,7 @@ const Home = () => {
   );
 
   return (
-    <div className="h-full w-full bg-header border-1 rounded-2xl flex items-center justify-center px-4 py-8 min-md:px-2 min-md:py-4">
+    <div className="h-full w-full bg-card border-1 rounded-2xl flex items-center justify-center px-4 py-8 min-md:px-2 min-md:py-4">
       <div className="h-full w-full p-10 flex items-center justify-center">
         {activeSection?.component}
       </div>

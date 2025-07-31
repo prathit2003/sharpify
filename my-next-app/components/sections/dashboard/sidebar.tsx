@@ -18,22 +18,22 @@ const Sidebar = () => {
     {
       title: "enhance",
       icon: <AutoAwesomeIcon fontSize="small" />,
-      link: "dashboard?section=enhance",
+      link: "/tools?section=enhanceimage",
     },
     {
       title: "resize",
       icon: <PhotoSizeSelectLargeIcon fontSize="small" />,
-      link: "/dashboard?section=resize",
+      link: "/tools?section=reducesize",
     },
     {
       title: "remove background",
       icon: <FormatPaintIcon fontSize="small" />,
-      link: "/dashboard?section=rembg",
+      link: "/tools?section=removebackground",
     },
     {
       title: "change format",
       icon: <FormatColorFillIcon fontSize="small" />,
-      link: "/dashboard?section=changeformat",
+      link: "/tools?section=changeformat",
     },
   ];
 
@@ -42,13 +42,13 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col items-start justify-between h-full rounded-2xl bg-header border px-2 py-3 sm:px-4 sm:py-4">
+    <div className="flex flex-col items-start justify-between h-full rounded-2xl bg-card border px-2 py-3 sm:px-4 sm:py-4">
       <div className="bg-main w-full flex items-center justify-center h-1/3 rounded-xl my-2 p-2">
         <div className="flex flex-col items-center space-y-3">
           <div className="flex items-center space-x-2">
             <img />
             <h1
-              className="text-white font-semibold text-[8px] sm:text-xs 
+              className="text-main font-semibold text-[8px] sm:text-xs 
             md:text-sm text-center"
             >
               Try our pro version

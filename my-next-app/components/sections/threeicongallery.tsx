@@ -4,18 +4,27 @@ import { motion } from "framer-motion";
 
 const ThreeCard = () => {
   return (
-    <div className="flex flex-col items-center space-y-8 p-2 bg-secondary w-full rounded-3xl">
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-center text-4xl font-semibold text-main mt-16 leading-snug"
-      >
-        Clarity You Can See,
-        <br />
-        Speed You Can Feel!
-      </motion.h1>
+    <div className="flex flex-col items-center space-y-8 p-2 bg-secondary w-full rounded-3xl my-8">
+      <div className="flex flex-col items-center space-y-2 mt-16">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center text-4xl font-bold text-main leading-snug"
+        >
+          Your Creative Spark Just Met Its Smartest Match
+        </motion.h1>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center text-2xl text-gray-200 leading-snug"
+        >
+          Clarity You Can See, Speed You Can Feel!
+        </motion.h2>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -29,13 +38,11 @@ const ThreeCard = () => {
           Heading="AI Generation"
           SubHeading="Create stunning visuals and assets using intelligent generation tools."
         />
-
         <Component
           type="enhance"
           Heading="Image Enhancement"
           SubHeading="Restore clarity, resolution, and detail with cutting-edge AI."
         />
-
         <Component
           type="tools"
           Heading="Utility Tools"

@@ -1,8 +1,9 @@
 "use client";
-
+import QuizIcon from "@mui/icons-material/Quiz";
 import { useState } from "react";
 import Minus from "@mui/icons-material/Remove";
 import Plus from "@mui/icons-material/Add";
+import { Button } from "../ui/button";
 
 const faqs = [
   {
@@ -54,24 +55,44 @@ export default function FAQ() {
   };
 
   return (
-    <div className="max-w-3xl p-10 lg:p-12 my-20 text-white">
-      <h2 className="lg:text-3xl sm:text-lg md:text-xl font-semibold mb-12 text-center text-white">
-        Frequently Asked Questions
-      </h2>
-      <div className="lg:space-y-4 space-y-2">
+    <div className="max-w-[70vw] p-4 my-16">
+      {/* Wrap everything in a flex container */}
+      <div className="w-full flex items-end justify-between mb-8 p-4">
+        {/* Left section: Icon + Text */}
+        <div className="space-y-2 text-left">
+          <QuizIcon
+            sx={{
+              fontSize: { xs: 48, md: 96 },
+              color: "#ff9900",
+            }}
+          />
+          <h1 className="text-xl md:text-3xl lg:text-4xl text-main">
+            Your questions <br /> resolved in one place
+          </h1>
+          <h3 className="text-sm md:text-md lg:text-xl text-gray-500">
+            Frequently Asked Questions from our users and their answers.
+          </h3>
+        </div>
+
+        {/* Right section: CTA button */}
+        <Button className="p-4 sm:text-md md:text-lg lg:text-xl text-main rounded-xl bg-secondary hover:scale-105 transition duration-300 ease-in-out mr-2 ">
+          Contact us
+        </Button>
+      </div>
+
+      {/* FAQs */}
+      <div className="lg:space-y-4 space-y-2 w-full">
         {faqs.map((faq, index) => (
-          <div key={index} className="border-b border-heading pb-3">
+          <div key={index} className="border-b border-white pb-3">
             <button
               onClick={() => toggleFAQ(index)}
-              className="flex justify-between items-center w-full text-left lg:text-xl md:text-lg text-sm py-4 px-15 md:px-4 transition duration-300"
+              className="flex justify-between items-center w-full text-left lg:text-xl md:text-lg text-sm py-4 px-4 transition duration-300"
             >
-              <span className="text-white lg:text-xl md:text-lg text-sm">
-                {faq.question}
-              </span>
+              <span className="text-white">{faq.question}</span>
               {openIndex === index ? (
-                <Minus className="lg:w-6 lg:h-6 md:w-4 md:h-4 w-3 h-3" />
+                <Minus className="lg:w-6 lg:h-6 md:w-4 md:h-4 w-3 h-3 text-secondary" />
               ) : (
-                <Plus className="lg:w-6 lg:h-6 md:w-4 md:h-4 w-3 h-3" />
+                <Plus className="lg:w-6 lg:h-6 md:w-4 md:h-4 w-3 h-3 text-secondary" />
               )}
             </button>
             <div
@@ -81,7 +102,7 @@ export default function FAQ() {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-main lg:text-xl md:text-lg text-sm mx-4 px-2">
+              <p className="text-gray-400 lg:text-xl md:text-lg text-sm mx-4 px-2">
                 {faq.answer}
               </p>
             </div>

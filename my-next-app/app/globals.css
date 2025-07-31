@@ -13,7 +13,7 @@
 
   /* Dark theme as default */
   --bg: #242124;
-  --text: #ffffff;
+  --text: #f9e8c0;
   --primary: #22c55e;
   --primary-light: #86efac;
   --accent: #ff6b6b;
@@ -84,7 +84,9 @@ body {
   .bg-primary {
     background-color: var(--primary);
   }
-
+  .bg-header {
+    background-color: var(--header-bg);
+  }
   .bg-secondary {
     background-color: var(--secondary);
   }
@@ -265,7 +267,29 @@ body {
   .animate-infinite-scroll {
     animation: infinite-scroll 20s linear infinite;
   }
+  @keyframes infinite-scroll-slow {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(
+        calc(-50% - 6px)
+      ); /* 12px matches Tailwind's space-x-8 */
+    }
+  }
 
+  .animate-infinite-scroll-slow {
+    animation: infinite-scroll-slow 40s linear infinite;
+  }
+
+  .bg-card {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* darker shadow for dark bg like #242124 */
+    background-color: rgba(255, 255, 255, 0.02); /* soft glass effect */
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 1.5rem;
+  }
   @keyframes infinite-scroll-reverse {
     0% {
       transform: translateX(calc(-50% - 8px));

@@ -13,7 +13,7 @@ const Navbar = () => {
   } = useUIStore();
   const router = useRouter();
   return (
-    <div className="bg-main fixed top-0 left-0 w-full z-5">
+    <div className="bg-header fixed top-0 left-0 w-full z-5">
       <div className="flex items-center justify-between px-8 py-4 md:px-10 md:py-5">
         {/* Logo + Navigation */}
         <div className="flex items-center space-x-14">
@@ -59,7 +59,7 @@ const Navbar = () => {
                       ].map((tool) => (
                         <a
                           key={tool}
-                          href={`/tools/${tool.toLowerCase()}`}
+                          href={`/tools?section=${tool.toLowerCase()}`}
                           className="block text-main text-md hover:text-primary py-2 transition-colors"
                         >
                           {tool}
@@ -85,14 +85,14 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-4">
           <a
             onClick={() => router.push("/signup")}
-            className="text-primary text-lg py-2 hover:underline transition duration-300 ease-in-out hover:scale-105"
+            className="text-primary text-lg py-2 hover:underline transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
           >
             signup
           </a>
           <div className="h-6 w-[1px] bg-white" />
           <Button
             onClick={() => router.push("/signin")}
-            className="bg-secondary rounded-2xl text-main text-lg font-semibold py-2 px-4 transition-all duration-300 hover:scale-105"
+            className="bg-secondary rounded-2xl text-main text-lg font-semibold py-2 px-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer"
           >
             Signin
           </Button>
@@ -100,7 +100,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Icon */}
         <Button
-          className="lg:hidden p-2 rounded-md bg-secondary transition-colors"
+          className="lg:hidden p-2 rounded-md bg-secondary transition-colors hover:cursor-pointer"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
@@ -149,8 +149,8 @@ const Navbar = () => {
                     ].map((tool) => (
                       <a
                         key={tool}
-                        href={`/tools/${tool.toLowerCase()}`}
-                        className="block text-main text-md hover:text-primary py-2 transition-colors"
+                        href={`/tools?section=${tool.toLowerCase()}`}
+                        className="block  text-main text-md hover:text-primary py-2 transition-colors"
                       >
                         {tool}
                       </a>
@@ -171,13 +171,13 @@ const Navbar = () => {
           <div className="flex flex-col items-center space-y-3 mt-3">
             <a
               onClick={() => router.push("/signup")}
-              className="text-primary text-lg py-2 hover:underline transition duration-300 ease-in-out hover:scale-105"
+              className="text-primary text-lg py-2 hover:underline transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
             >
               signup
             </a>
             <Button
               onClick={() => router.push("/signin")}
-              className="bg-secondary rounded-2xl text-main text-lg font-semibold py-2 px-4 transition-all duration-300 hover:scale-105"
+              className="bg-secondary rounded-2xl text-main text-lg font-semibold py-2 px-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer"
             >
               Signin
             </Button>

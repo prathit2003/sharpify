@@ -8,7 +8,7 @@ const Topbar = () => {
     <div className="flex items-center justify-between fixed top-0 left-0 w-full  bg-header py-4 px-10 ">
       <div className="flex items-center justify-center">
         <img
-          src="/icons/sharpify.svg"
+          src="/icons/logo.svg"
           alt="Icon"
           className="h-4 w-15 md:h-10 md:w-30"
         />
