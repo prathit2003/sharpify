@@ -1,30 +1,61 @@
 "use client";
+
+import { motion } from "framer-motion";
 import { BoltRounded, AutoAwesomeRounded } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+
 export default function GetStarted() {
   const router = useRouter();
   const handlegetstarted = () => {
     router.push("/tools");
   };
+
   return (
-    <div className="relative isolate overflow-hidden bg-header mt-16 py-12  md:py-16 rounded-3xl">
+    <div className="relative isolate overflow-hidden bg-header mt-16 py-12 md:py-16 rounded-3xl">
       <div className="w-full px-6 md:px-8 lg:px-12">
-        <div className="mx-8 grid  grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
-          <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-xl lg:text-4xl  tracking-tight text-main">
+        <div className="mx-8 grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="max-w-xl lg:max-w-lg"
+          >
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, ease: "easeOut", delay: 0.1 }}
+              viewport={{ once: false }}
+              className="text-xl lg:text-3xl tracking-tight font-bold text-main"
+            >
               discover the power of AI image enhancement
-            </h2>
-            <p className="mt-4 text-sm lg:text-lg text-gray-300">
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: false }}
+              className="mt-4 text-sm lg:text-lg text-gray-300"
+            >
               Enhance your images effortlessly with our AI-powered tool. Say
               goodbye to manual editing and hello to stunning results in
               seconds. Experience the future of image enhancement today and
               unlock your creativity with AI.
-            </p>
-            <div className="mt-6 flex max-w-md gap-x-4">
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: false }}
+              className="flex max-w-md gap-x-4"
+            >
               <Button
                 onClick={handlegetstarted}
-                className="mt-4 sm:mt-6 px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-main font-semibold rounded-3xl bg-secondary hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out flex items-center group mx-auto lg:mx-0"
+                className="mt-2 sm:mt-6 px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-main font-semibold rounded-3xl bg-secondary hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out flex items-center group mx-auto lg:mx-0"
               >
                 Get Started
                 <svg
@@ -43,14 +74,22 @@ export default function GetStarted() {
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </Button>
-            </div>
-          </div>
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+            </motion.div>
+          </motion.div>
+
+          {/* Features Section */}
+          <motion.dl
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, ease: "easeOut", delay: 0.4 }}
+            viewport={{ once: false }}
+            className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2"
+          >
             <div className="flex flex-col items-start">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                 <BoltRounded className="h-6 w-6 text-secondary" />
               </div>
-              <dt className="mt-4 text-xl lg:text-4xl  text-main">
+              <dt className="mt-4 text-xl lg:text-4xl text-main">
                 Create Stunning AI Art.
               </dt>
               <dd className="mt-2 text-sm lg:text-lg text-gray-400">
@@ -72,7 +111,7 @@ export default function GetStarted() {
                 sharper and more vibrant.
               </dd>
             </div>
-          </dl>
+          </motion.dl>
         </div>
       </div>
     </div>

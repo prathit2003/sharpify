@@ -70,22 +70,9 @@ const ChangeFormat = () => {
           </p>
           {image == null ? (
             <div className="flex flex-col items-center gap-4">
-              <img src="images/noimage.jpeg" className="w-full" />
-              <input
-                ref={inputRef}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => {
-                  if (e.target.files && e.target.files[0]) {
-                    const selected = e.target.files[0];
-                    setImage(selected);
-                  }
-                }}
-              />
               <Button
                 variant={"outline"}
-                className="group relative rounded-4xl gap-2 bg-gradient-purple text-white hover:scale-105 mt-4"
+                className="group relative rounded-4xl gap-2 bg-card text-main hover:cursor-pointer hover:scale-105 mt-4"
                 size={"lg"}
                 onClick={() => inputRef.current?.click()}
               >
@@ -136,7 +123,7 @@ const ChangeFormat = () => {
                 </Select>
                 <Button
                   variant={"outline"}
-                  className="group relative rounded-md gap-4 p-4 bg-gradient-purple text-white hover:scale-105"
+                  className="group relative rounded-md gap-4 p-4 bg-card text-main hover:cursor-pointer hover:scale-105"
                   size={"lg"}
                   onClick={() => inputRef.current?.click()}
                 >

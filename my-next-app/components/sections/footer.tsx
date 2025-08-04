@@ -1,65 +1,68 @@
 "use client";
 
+import { motion } from "framer-motion";
 import useUIStore from "@/app/store/UIatom";
 
 const Footer = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useUIStore();
 
   return (
-    <div className="bg-black w-full z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="bg-black w-full z-10"
+    >
       <footer>
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
-            <div className="mb-6 md:mb-0 ">
+            <div className="mb-6 md:mb-0">
               <a href="" className="flex items-center justify-center">
                 <img src="/icons/logo.svg" className="h-12 w-auto" alt="Logo" />
               </a>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 p-6">
+              {/* Resources */}
               <div className="text-left">
-                <h2 className="mb-6 text-sm uppercase text-main">Resources</h2>
+                <h2 className="mb-6 font-bold text-sm uppercase text-main">
+                  Resources
+                </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a
-                      href="https://flowbite.com/"
-                      className="hover:underline hover:text-primary"
-                    >
+                    <a href="#" className="hover:underline hover:text-primary">
                       Real Esgran
                     </a>
                   </li>
                   <li className="mb-4">
-                    <a
-                      href="https://flowbite.com/"
-                      className="hover:underline hover:text-primary"
-                    >
+                    <a href="#" className="hover:underline hover:text-primary">
                       Amazon AWS
                     </a>
                   </li>
                 </ul>
               </div>
+
+              {/* Follow Us */}
               <div className="text-left">
-                <h2 className="mb-6 text-sm uppercase text-main">Follow us</h2>
+                <h2 className="mb-6 text-sm font-bold uppercase text-main">
+                  Follow us
+                </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a
-                      href="https://github.com/themesberg/flowbite"
-                      className="hover:underline hover:text-primary"
-                    >
+                    <a href="#" className="hover:underline hover:text-primary">
                       Github
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="https://discord.gg/4eeurUVvTy"
-                      className="hover:underline hover:text-primary"
-                    >
+                    <a href="#" className="hover:underline hover:text-primary">
                       Discord
                     </a>
                   </li>
                 </ul>
               </div>
+
+              {/* Legal */}
               <div className="text-left">
-                <h2 className="mb-6 text-sm text-gray-900 uppercase dark:text-white">
+                <h2 className="mb-6 text-sm font-bold text-gray-900 uppercase dark:text-white">
                   Legal
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -70,14 +73,16 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="#" className="hover:underline hover:text-primary">
-                      Terms &amp; Conditions
+                      Terms & Conditions
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
+
           <hr className="my-2 border-white sm:mx-auto lg:my-4" />
+
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-300 sm:text-center">
               © 2025{" "}
@@ -155,7 +160,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 };
 

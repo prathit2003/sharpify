@@ -13,7 +13,7 @@ const testimonials: componentprops[] = [
   {
     comment:
       "I uploaded an old black-and-white photo of my grandparents, and the AI brought it to life with stunning colors. Absolutely magical!",
-    profilepicSrc: "images/testmonial1.jpg",
+    profilepicSrc: "images/testmonial1.webp",
     name: "Aanya Patel",
     about: "History Student",
     rating: 5,
@@ -21,7 +21,7 @@ const testimonials: componentprops[] = [
   {
     comment:
       "As a freelance designer, I’ve saved hours using the image generator for mockups. Just a prompt, and I get clean, usable assets.",
-    profilepicSrc: "images/testmonial2.jpg",
+    profilepicSrc: "images/testmonial2.webp",
     name: "Jordan Liu",
     about: "Freelance Designer",
     rating: 4,
@@ -29,7 +29,7 @@ const testimonials: componentprops[] = [
   {
     comment:
       "I needed high-quality AI art for a school project, and this site made it super easy. The results were sharp, colorful, and impressive!",
-    profilepicSrc: "images/testmonial3.jpg",
+    profilepicSrc: "images/testmonial3.webp",
     name: "Meera Sharma",
     about: "High School Student",
     rating: 5,
@@ -37,7 +37,7 @@ const testimonials: componentprops[] = [
   {
     comment:
       "The enhancement tool fixed blurry images I thought were unusable. It's fast, simple, and a must-have for content creators.",
-    profilepicSrc: "images/testmonial4.jpg",
+    profilepicSrc: "images/testmonial4.webp",
     name: "Rohan Verma",
     about: "Content Creator",
     rating: 4,
@@ -45,7 +45,7 @@ const testimonials: componentprops[] = [
   {
     comment:
       "From concept to visual in seconds — this AI generator helps me pitch product ideas faster than ever before. Huge time saver!",
-    profilepicSrc: "images/testmonial5.jpg",
+    profilepicSrc: "images/testmonial5.webp",
     name: "Tanya Desai",
     about: "Startup Founder",
     rating: 5,
@@ -80,19 +80,16 @@ const Testimonial: React.FC = () => {
       </div>
 
       {/* Scrolling Testimonials */}
-      <div className="w-full overflow-hidden p-8">
-        <div className="flex animate-infinite-scroll-slow space-x-8">
+      <div className="w-full overflow-hidden py-8 relative">
+        <div className="absolute top-0 left-0 h-full w-24 z-10 fade-left pointer-events-none"></div>
+
+        <div className="flex animate-infinite-scroll-slow space-x-4 w-max">
           {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <Component
-              key={index}
-              comment={testimonial.comment}
-              profilepicSrc={testimonial.profilepicSrc}
-              name={testimonial.name}
-              about={testimonial.about}
-              rating={testimonial.rating}
-            />
+            <Component key={index} {...testimonial} />
           ))}
         </div>
+
+        <div className="absolute top-0 right-0 h-full w-24  z-10 fade-right pointer-events-none"></div>
       </div>
     </div>
   );

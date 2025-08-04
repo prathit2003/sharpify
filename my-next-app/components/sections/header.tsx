@@ -1,9 +1,11 @@
 "use client";
+import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import useUIStore from "@/app/store/UIatom";
+import { SpanStatus } from "next/dist/trace";
 const Navbar = () => {
   const {
     isMobileMenuOpen,
@@ -13,7 +15,12 @@ const Navbar = () => {
   } = useUIStore();
   const router = useRouter();
   return (
-    <div className="bg-header fixed top-0 left-0 w-full z-5">
+    <motion.div
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-header fixed top-0 left-0 w-full z-20"
+    >
       <div className="flex items-center justify-between px-8 py-4 md:px-10 md:py-5">
         {/* Logo + Navigation */}
         <div className="flex items-center space-x-14">
@@ -24,47 +31,41 @@ const Navbar = () => {
           />
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {["Tools", "Generate", "Contact", "About", "API"].map((item) =>
+            {["Tools", "Generate", "Enhance", "API"].map((item) =>
               item === "Tools" ? (
                 <div
                   key={item}
-                  className="relative flex items-center space-x-1 group"
+                  className="relative flex items-center group hover:cursor-pointer"
                 >
-                  <a
-                    href="/tools"
-                    className="nav-link text-main hover:text-primary"
-                  >
+                  <span className="text-main group-hover:text-secondary transition-colors">
                     Tools
-                  </a>
+                  </span>
                   <button
                     onClick={() => setexpandIconClick(!expandIconClick)}
                     className="p-1"
                   >
                     <ExpandMoreIcon
-                      className={`transition-transform duration-200 ${
+                      className={`transition-transform duration-200 group-hover:text-secondary ${
                         expandIconClick
-                          ? "rotate-180 text-primary hover:cursor-pointer"
-                          : "text-main hover:text-primary hover:cursor-pointer"
+                          ? "rotate-180 text-secondary"
+                          : "text-main"
                       }`}
                     />
                   </button>
 
                   {expandIconClick && (
                     <div className="absolute top-full left-0 mt-3 w-56 bg-main rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)] px-5 py-4 z-50">
-                      {[
-                        "Enhanceimage",
-                        "RemoveBackground",
-                        "Reducesize",
-                        "Changeformat",
-                      ].map((tool) => (
-                        <a
-                          key={tool}
-                          href={`/tools?section=${tool.toLowerCase()}`}
-                          className="block text-main text-md hover:text-primary py-2 transition-colors"
-                        >
-                          {tool}
-                        </a>
-                      ))}
+                      {["RemoveBackground", "Reducesize", "Changeformat"].map(
+                        (tool) => (
+                          <a
+                            key={tool}
+                            href={`/tools?section=${tool.toLowerCase()}`}
+                            className="block text-main text-md hover:text-secondary py-2 transition-colors"
+                          >
+                            {tool}
+                          </a>
+                        )
+                      )}
                     </div>
                   )}
                 </div>
@@ -72,7 +73,7 @@ const Navbar = () => {
                 <a
                   key={item}
                   href={`/${item.toLowerCase()}`}
-                  className="nav-link text-main hover:text-primary"
+                  className="nav-link text-main hover:text-secondary"
                 >
                   {item}
                 </a>
@@ -85,7 +86,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-4">
           <a
             onClick={() => router.push("/signup")}
-            className="text-primary text-lg py-2 hover:underline transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
+            className="text-main text-lg py-2 hover:underline hover:text-secondary transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
           >
             signup
           </a>
@@ -114,18 +115,13 @@ const Navbar = () => {
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-main flex flex-col items-center space-y-4 py-4">
-          {["Tools", "Generate", "Contact", "About", "API"].map((item) =>
+          {["Tools", "Generate", "Enhance", "API"].map((item) =>
             item === "Tools" ? (
               <div
                 key={item}
-                className="relative flex items-center space-x-1 group"
+                className="relative flex items-center space-x-1 group hover:text-secondary"
               >
-                <a
-                  href="/tools"
-                  className="nav-link text-main hover:text-primary"
-                >
-                  Tools
-                </a>
+                <span className="text-main">Tools</span>
                 <button
                   onClick={() => setexpandIconClick(!expandIconClick)}
                   className="p-1"
@@ -133,28 +129,25 @@ const Navbar = () => {
                   <ExpandMoreIcon
                     className={`transition-transform duration-200 ${
                       expandIconClick
-                        ? "rotate-180 text-primary hover:cursor-pointer"
-                        : "text-main hover:text-primary hover:cursor-pointer"
+                        ? "rotate-180 text-secondary hover:cursor-pointer"
+                        : "text-main hover:text-secondary hover:cursor-pointer"
                     }`}
                   />
                 </button>
 
                 {expandIconClick && (
                   <div className="absolute top-full left-0 mt-3 w-56 bg-main rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)] px-5 py-4 z-50">
-                    {[
-                      "Enhanceimage",
-                      "RemoveBackground",
-                      "Reducesize",
-                      "Changeformat",
-                    ].map((tool) => (
-                      <a
-                        key={tool}
-                        href={`/tools?section=${tool.toLowerCase()}`}
-                        className="block  text-main text-md hover:text-primary py-2 transition-colors"
-                      >
-                        {tool}
-                      </a>
-                    ))}
+                    {["RemoveBackground", "Reducesize", "Changeformat"].map(
+                      (tool) => (
+                        <a
+                          key={tool}
+                          href={`/tools?section=${tool.toLowerCase()}`}
+                          className="block  text-main text-md hover:text-secondary py-2 transition-colors"
+                        >
+                          {tool}
+                        </a>
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -162,7 +155,7 @@ const Navbar = () => {
               <a
                 key={item}
                 href={`/${item.toLowerCase()}`}
-                className="nav-link text-main hover:text-primary"
+                className="nav-link text-main hover:text-secondary"
               >
                 {item}
               </a>
@@ -171,7 +164,7 @@ const Navbar = () => {
           <div className="flex flex-col items-center space-y-3 mt-3">
             <a
               onClick={() => router.push("/signup")}
-              className="text-primary text-lg py-2 hover:underline transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
+              className="text-main text-lg py-2 hover:underline hover:text-secondary transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
             >
               signup
             </a>
@@ -184,7 +177,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

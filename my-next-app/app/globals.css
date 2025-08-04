@@ -13,10 +13,9 @@
 
   /* Dark theme as default */
   --bg: #242124;
-  --text: #f9e8c0;
+  --text: #ffffff;
   --primary: #22c55e;
   --primary-light: #86efac;
-  --accent: #ff6b6b;
   --secondary: #ff9900;
   --muted-text: #242124;
   --header-bg: #1c1a1c;
@@ -90,48 +89,28 @@ body {
   .bg-secondary {
     background-color: var(--secondary);
   }
-  @keyframes fade-in-up {
-    0% {
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .bg-card {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    background-color: rgba(20, 20, 20, 0.2);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .fade-left {
+    background: linear-gradient(to right, #242124, rgba(36, 33, 36, 0));
   }
 
-  .fade-in-up {
-    opacity: 0;
-    transform: translateY(1rem);
-    animation: fade-in-up 0.8s ease-out forwards;
+  .fade-right {
+    background: linear-gradient(to left, #242124, rgba(36, 33, 36, 0));
   }
 
-  .bg-secondary-glass {
-    background-color: rgba(255, 153, 0, 0.12); /* Light base */
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-    border-radius: 1rem;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  .fade-top {
+    background: linear-gradient(to top, #242124, rgba(36, 33, 36, 0));
   }
 
-  /* Slightly lighter variation for optional visual break */
-  .bg-secondary-glass-lightest {
-    background-color: rgba(255, 153, 0, 0.08);
+  .fade-bottom {
+    background: linear-gradient(to bottom, #242124, rgba(36, 33, 36, 0));
   }
-
-  /* Slightly darker for depth */
-  .bg-secondary-glass-mid {
-    background-color: rgba(255, 153, 0, 0.18);
-  }
-
-  .bg-secondary-glass:hover {
-    background-color: rgba(255, 153, 0, 0.24);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-  }
-
   /* Text Utilities */
   .text-main {
     color: var(--text);
@@ -146,14 +125,11 @@ body {
   .text-primary {
     color: var(--primary);
   }
-  .text-accent {
-    color: var(--accent);
-  }
   .text-secondary {
     color: var(--secondary);
   }
-  .hover\:text-primary:hover {
-    color: var(--primary);
+  .hover\:text-secondary:hover {
+    color: var(--color-orange-300);
   }
 
   .hover\:text-main:hover {
@@ -168,74 +144,29 @@ body {
     border-color: var(--secondary);
   }
   .dashed-border {
-    border: 4px dashed;
-    border-radius: 0.75rem;
-    border-image-slice: 1;
-    border-image-source: repeating-conic-gradient(
-      from 0deg,
-      var(--primary) 0deg 10deg,
-      transparent 10deg 20deg,
-      var(--primary-light, #c666fe) 20deg 30deg,
-      transparent 30deg 40deg
-    );
+    border: 2px dashed var(--secondary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: var(--bg);
   }
 
-  .solid-round-border {
-    border: 4px solid;
-    border-radius: 0.75rem;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(
-      to right,
-      var(--primary),
-      var(--primary-light, #c666fe)
-    );
-  }
   /* Shadows */
   .button-shadow {
-    box-shadow: 0 0 10px var(--primary-light, #b24bff),
-      0 0 24px var(--primary, #a201ff);
+    box-shadow: 0 0 6px
+        color-mix(in srgb, var(--secondary, #ffcc80) 30%, transparent),
+      0 0 12px color-mix(in srgb, var(--secondary, #ff9900) 20%, transparent);
   }
-
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  .inner-shadow-y {
+    background-color: #242124;
+    box-shadow: inset 0 12px 24px rgba(0, 0, 0, 0.35),
+      inset 0 -12px 24px rgba(255, 255, 255, 0.03);
+    border-radius: 1rem;
   }
-
   /* Font Weights */
-  .poppins-thin {
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-  }
-
-  .poppins-extralight {
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-    font-style: normal;
-  }
-
-  .poppins-light {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-  }
 
   .poppins-regular {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-style: normal;
-  }
-
-  .poppins-medium {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
     font-style: normal;
   }
 
@@ -253,28 +184,12 @@ body {
   /* ============================================
    KEYFRAMES & ANIMATIONS
 ============================================ */
-  @keyframes infinite-scroll {
-    0% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-    100% {
-      -webkit-transform: translateX(calc(-50% - 8px));
-      transform: translateX(calc(-50% - 8px));
-    }
-  }
-
-  .animate-infinite-scroll {
-    animation: infinite-scroll 20s linear infinite;
-  }
   @keyframes infinite-scroll-slow {
-    0% {
+    from {
       transform: translateX(0);
     }
-    100% {
-      transform: translateX(
-        calc(-50% - 6px)
-      ); /* 12px matches Tailwind's space-x-8 */
+    to {
+      transform: translateX(-50%);
     }
   }
 
@@ -282,25 +197,8 @@ body {
     animation: infinite-scroll-slow 40s linear infinite;
   }
 
-  .bg-card {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* darker shadow for dark bg like #242124 */
-    background-color: rgba(255, 255, 255, 0.02); /* soft glass effect */
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 1.5rem;
-  }
-  @keyframes infinite-scroll-reverse {
-    0% {
-      transform: translateX(calc(-50% - 8px));
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  .animate-infinite-scroll-reverse {
-    animation: infinite-scroll-reverse 20s linear infinite;
+  .animate-infinite-scroll-slow {
+    animation: infinite-scroll-slow 40s linear infinite;
   }
 
   @keyframes fade-in-up {
@@ -317,6 +215,6 @@ body {
   .fade-in-up {
     opacity: 0;
     transform: translateY(1rem);
-    animation: fade-in-up 0.8s ease-out forwards;
+    animation: fade-in-up 1.6s ease-out forwards;
   }
 }

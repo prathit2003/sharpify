@@ -17,19 +17,19 @@ const iconMap = {
   generate: (
     <BoltRounded
       fontSize="large"
-      className="text-white opacity-80 group-hover:opacity-100 transition"
+      className="text-amber-400 group-hover:opacity-100 transition"
     />
   ),
   enhance: (
     <AutoAwesomeRounded
       fontSize="large"
-      className="text-white opacity-80 group-hover:opacity-100 transition"
+      className="text-amber-400  group-hover:opacity-100 transition"
     />
   ),
   tools: (
     <BuildRounded
       fontSize="large"
-      className="text-white opacity-80 group-hover:opacity-100 transition"
+      className="text-amber-400  group-hover:opacity-100 transition"
     />
   ),
 };
@@ -64,7 +64,7 @@ const Component: React.FC<IconGalleryProps> = ({
   return (
     <div
       ref={ref}
-      className="opacity-0 group relative flex flex-col justify-between p-8 rounded-2xl border-2 border:border-white bg-secondary-glass-lightest text-main hover:bg-secondary-glass transition-all duration-300 shadow-xl hover:shadow-2xl aspect-[4/3] transform hover:scale-[1.02]"
+      className="opacity-0 group relative flex flex-col justify-between p-8 rounded-2xl border-2 border:border-white bg-card text-main transition-all duration-300 shadow-xl hover:shadow-2xl aspect-[4/3] transform hover:scale-[1.02]"
     >
       {/* Top icons */}
       <div className="flex items-center justify-between mb-6">

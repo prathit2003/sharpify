@@ -6,11 +6,6 @@ import Enhance from "@/components/sections/dashboard/enhance";
 import Resize from "@/components/sections/dashboard/resize";
 import Removebg from "@/components/sections/dashboard/removebackground";
 import ChangeFormat from "@/components/sections/dashboard/changeformat";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import PhotoSizeSelectLargeIcon from "@mui/icons-material/PhotoSizeSelectLarge";
-import FormatPaintIcon from "@mui/icons-material/FormatPaint";
-import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
-
 const Home = () => {
   const isSmall = useMediaQuery("(max-width: 640px)");
   const isMedium = useMediaQuery("(max-width: 1024px)");
@@ -24,34 +19,26 @@ const Home = () => {
     setActiveSectionKey(sectionParam);
   }, [sectionParam]);
 
-  let iconSize: "small" | "medium" | "large" = "large";
-  if (isSmall) iconSize = "small";
-  else if (isMedium) iconSize = "medium";
-
   const sectionMap = [
     {
       key: "enhanceimage",
       title: "Enhance",
       component: <Enhance />,
-      icon: <AutoAwesomeIcon fontSize={iconSize} />,
     },
     {
       key: "reducesize",
       title: "Resize",
       component: <Resize />,
-      icon: <PhotoSizeSelectLargeIcon fontSize={iconSize} />,
     },
     {
       key: "removebackground",
       title: "Remove Background",
       component: <Removebg />,
-      icon: <FormatColorFillIcon fontSize={iconSize} />,
     },
     {
       key: "changeformat",
       title: "Change Format",
       component: <ChangeFormat />,
-      icon: <FormatPaintIcon fontSize={iconSize} />,
     },
   ];
 
@@ -60,8 +47,8 @@ const Home = () => {
   );
 
   return (
-    <div className="h-full w-full bg-card border-1 rounded-2xl flex items-center justify-center px-4 py-8 min-md:px-2 min-md:py-4">
-      <div className="h-full w-full p-10 flex items-center justify-center">
+    <div className="h-full w-full bg-header rounded-2xl">
+      <div className="h-full w-full p-6 flex items-center justify-center">
         {activeSection?.component}
       </div>
     </div>

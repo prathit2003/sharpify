@@ -1,45 +1,46 @@
+"use client";
 import { Button } from "@/components/ui/button";
-
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import MenuIcon from "@mui/icons-material/Menu";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import useUIStore from "@/app/store/UIatom";
 const Topbar = () => {
-  const handleLogout = () => {
+  const router = useRouter();
+  const handleBackButton = () => {
+    router.back();
+  };
+  const handleprofileclick = () => {
     console.log("Logout clicked");
   };
+  const { isMobileMenuOpen, setIsMobileMenuOpen } = useUIStore();
   return (
-    <div className="flex items-center justify-between fixed top-0 left-0 w-full  bg-header py-4 px-10 ">
-      <div className="flex items-center justify-center">
+    <div className="flex items-center justify-between w-full bg-header py-4 px-6 rounded-2xl">
+      <div className="flex items-center space-x-4">
+        <Button
+          className="md:hidden p-2 rounded-lg bg-header hover:scale-105 transition-all hover:cursor-pointer"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <MenuIcon className="h-5 w-5 text-main" />
+        </Button>
         <img
           src="/icons/logo.svg"
           alt="Icon"
-          className="h-4 w-15 md:h-10 md:w-30"
+          className="h-6 lg:h-8 w-auto mx-2"
         />
       </div>
-      <div className="flex items-center space-x-4">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
         <Button
-          className="bg-gradient-purple rounded-2xl text-white text-lg pb-2 transition-all duration-300 hover:scale-105 mx-4"
-          onClick={handleLogout}
+          onClick={handleBackButton}
+          className="w-fit flex items-center gap-2  bg-card  rounded-xl py-2 px-4 text-main  transition-all"
         >
-          logout
+          <ArrowBackIcon fontSize="medium" />
+          <span>Back</span>
         </Button>
-        <div
-          className="h-8 w-8 rounded-full cursor-pointer border-1 border-white hover:scale-105 transition-all duration-300 bg-none flex items-center justify-center"
-          onClick={handleLogout}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="white"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-6 w-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9zM4.5 19.5a8.25 8.25 0 0115 0"
-            />
-          </svg>
-        </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

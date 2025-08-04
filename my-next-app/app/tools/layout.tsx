@@ -11,14 +11,21 @@ export default function DashboardLayout({
 }) {
   const { Loading } = useUIStore();
   return (
-    <div className="flex flex-col h-screen w-full">
-      <Topbar />
+    <div className="h-[100vh] w-[100vw] bg-main flex flex-col p-6 space-y-6 overflow-hidden">
+      {/* Topbar with padding and separation */}
+      <div className="w-full">
+        <Topbar />
+      </div>
 
-      <div className="flex flex-grow pt-20">
-        <div className="hidden md:flex md:w-1/5 md:p-2 md:bg-main ">
+      {/* Sidebar + Main Content */}
+      <div className="flex w-full h-full overflow-hidden space-x-6">
+        {/* Sidebar */}
+        <div className="hidden md:block w-[20vw]">
           <Sidebar />
         </div>
-        <main className="flex-grow p-2 sm:w-4/5 ">{children}</main>
+
+        {/* Main Content */}
+        <main className="w-full md:w-[75vw] h-full">{children}</main>
       </div>
     </div>
   );

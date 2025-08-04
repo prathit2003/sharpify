@@ -7,9 +7,12 @@ import axios from "axios";
 import useBECstore from "@/app/store/backendcallsatom";
 import { useSession } from "next-auth/react";
 import { Slider } from "@/components/ui/slider";
-
+import DownloadIcon from "@mui/icons-material/Download";
+import UploadIcon from "@mui/icons-material/Upload";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 const Resize = () => {
-  const { image, setImage } = useImageStore();
+  const { image, setImage, Filename, setFilename, FileSize, setFileSize } =
+    useImageStore();
   const final_url = useBECstore((state) => state.final_url);
   const setFinalUrl = useBECstore((state) => state.setFinalUrl);
   const { data: session } = useSession();
@@ -19,45 +22,39 @@ const Resize = () => {
 
   const handleResize = async () => {
     if (!image) return;
-    // try {
-    //   const formData = new FormData();
-    //   formData.append("file", image);
-    //   formData.append("quality", quality.toString());
+    try {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("quality", quality.toString());
 
-    //   // const response = await axios.post(
-    //   //   "http://localhost:8000/api/reducesize",
-    //   //   formData,
-    //   //   {
-    //   //     headers: {
-    //   //       Authorization: `Bearer ${token}`,
-    //   //       "Content-Type": "multipart/form-data",
-    //   //     },
-    //   //   }
-    //   // );0
-
-    //   setFinalUrl(response.data.url);
-    // } catch (error) {
-    //   console.error("Error reducing size of image", error);
-    // }
-  };
-
-  useEffect(() => {
-    if (image) {
-      handleResize();
+      const response = await axios.post(
+        "http://localhost:8000/api/reducesize",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setFilename(response.data.Filename);
+      setFileSize(response.data.size);
+      setFinalUrl(response.data.url);
+    } catch (error) {
+      console.error("Error reducing size of image", error);
     }
-  }, [image, quality]);
+  };
 
   return (
     <>
-      {typeof final_url === "string" && final_url === "" ? (
-        <div className="flex flex-col items-center gap-4 w-full p-8 text-center">
-          <h1 className="text-4xl font-semibold text-white">Resize Image</h1>
-          <p className="text-lg text-gray-400">
-            Resize image without losing its quality using Sharpify AI.
+      {final_url === "" && (
+        <div className="flex flex-col items-center justify-center gap-4 w-full p-8 text-center">
+          <h1 className="text-4xl font-bold text-main">Resize your Image</h1>
+          <p className="text-lg -mt-2 text-gray-400">
+            Resize image without losing its quality using Refyned.AI.
           </p>
-
-          {!image ? (
-            <div>
+          {!image && (
+            <div className="mt-2">
               <input
                 ref={inputRef}
                 type="file"
@@ -70,40 +67,20 @@ const Resize = () => {
                 }}
               />
               <Button
-                variant={"outline"}
-                className="group relative rounded-4xl gap-2 bg-gradient-purple text-white hover:scale-105"
-                size={"lg"}
+                className="group relative rounded-xl gap-3 bg-secondary text-main hover:scale-105 w-full"
                 onClick={() => inputRef.current?.click()}
               >
                 Upload Image
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="white"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <path d="M3 15v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12V3" />
-                </svg>
+                <UploadIcon />
               </Button>
             </div>
-          ) : (
-            <div className="flex flex-col items-center gap-6">
-              <div className="flex flex-col gap-2">
-                <h1 className="text-xl font-semibold text-white">
-                  {image.name}
-                </h1>
-                <p className="text-md text-gray-400">
-                  {(image.size / 1024).toFixed(2)} KB
-                </p>
-              </div>
-
-              <div className="w-64">
+          )}
+          <div className="dashed-border rounded-xl bg-white/80 flex items-center justify-center w-[25vw] aspect-video">
+            <p className="text-xl text-main">or drop your files here</p>
+          </div>
+          {image && (
+            <div className="w-[25vw] space-y-2">
+              <div className="w-full">
                 <Slider
                   defaultValue={[quality]}
                   max={100}
@@ -114,47 +91,85 @@ const Resize = () => {
                   Quality: {quality}%
                 </p>
               </div>
-
-              <Button
-                variant={"outline"}
-                className="group relative rounded-md gap-4 p-4 bg-gradient-purple text-white hover:scale-105"
-                size={"lg"}
-                onClick={handleResize}
-              >
-                Convert
-                <span className="ml-2 flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
+              <div className="flex items-center justify-center gap-4 w-full">
+                <div className="relative flex items-center gap-4 pl-4 pr-8 py-3 border border-amber-500 rounded-xl shadow-md bg-card">
+                  {/* File Info */}
+                  <button
+                    className="absolute top-0.5 right-1 text-main hover:text-secondary transition-colors"
+                    aria-label="Remove file"
                   >
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </span>
-              </Button>
+                    <HighlightOffIcon fontSize="small" />
+                  </button>
+                  <div className="flex flex-col text-left">
+                    <h1 className="text-sm font-semibold text-main break-words">
+                      {image.name}
+                    </h1>
+                    <p className="text-xs text-gray-400">
+                      {(image.size / 1024).toFixed(2)} KB
+                    </p>
+                  </div>
+                </div>
+
+                <Button
+                  className="group relative rounded-xl gap-4 p-6 bg-secondary text-main hover:scale-105 shadow-md hover:shadow-xl"
+                  size={"lg"}
+                  onClick={handleResize}
+                >
+                  Resize
+                  <span className="ml-2 flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                </Button>
+              </div>
             </div>
           )}
         </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center gap-4 p-8 m-4">
-          <img
-            src={final_url as string}
-            alt="Resized"
-            className="w-1/3 aspect-auto"
-          />
+      )}
+      {typeof final_url === "string" && final_url != "" && (
+        <div className="flex flex-col items-center justify-center gap-4 w-full p-8 text-center">
+          <h1 className="text-4xl font-bold text-main">Resize your Image</h1>
+          <p className="text-lg text-gray-400">
+            Resize image without losing its quality using Refyned.AI.
+          </p>
+          <div className="dashed-border rounded-xl bg-white/80 flex items-center justify-center w-[25vw] aspect-video">
+            <p className="text-xl text-main">or drop your files here</p>
+          </div>
+          <div className="relative flex flex-col gap-1 px-4 py-3 border border-amber-500 rounded-lg shadow-md">
+            {/* Close Icon */}
+            <button className="absolute top-1 right-1 text-main hover:text-secondary">
+              <HighlightOffIcon fontSize="small" />
+            </button>
+
+            {/* File Info */}
+            <div className="flex flex-col">
+              <h1 className="text-sm font-medium text-main break-all">
+                {Filename}
+              </h1>
+              <p className="text-xs text-gray-500">
+                {(FileSize / 1024).toFixed(2)} KB
+              </p>
+            </div>
+          </div>
           <a
             href={final_url as string}
             download
-            className="bg-gradient-purple text-white rounded-4xl p-4 hover:scale-105"
+            className="flex item-center bg-secondary text-main rounded-xl py-4 px-6 hover:scale-105"
           >
             Download
+            <DownloadIcon fontSize="small" />
           </a>
         </div>
       )}
