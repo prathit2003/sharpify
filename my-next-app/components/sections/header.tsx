@@ -37,7 +37,7 @@ const Navbar = () => {
                   key={item}
                   className="relative flex items-center group hover:cursor-pointer"
                 >
-                  <span className="text-main group-hover:text-secondary transition-colors">
+                  <span className="text-main group-hover:text-gray-400 group-hover:cursor-pointer transition-colors">
                     Tools
                   </span>
                   <button
@@ -45,9 +45,9 @@ const Navbar = () => {
                     className="p-1"
                   >
                     <ExpandMoreIcon
-                      className={`transition-transform duration-200 group-hover:text-secondary ${
+                      className={`transition-transform duration-200 group-hover:text-gray-400 ${
                         expandIconClick
-                          ? "rotate-180 text-secondary"
+                          ? "rotate-180 text-gray-400"
                           : "text-main"
                       }`}
                     />
@@ -60,7 +60,7 @@ const Navbar = () => {
                           <a
                             key={tool}
                             href={`/tools?section=${tool.toLowerCase()}`}
-                            className="block text-main text-md hover:text-secondary py-2 transition-colors"
+                            className="block text-main text-md hover:text-gray-400 py-2 transition-colors"
                           >
                             {tool}
                           </a>
@@ -72,8 +72,12 @@ const Navbar = () => {
               ) : (
                 <a
                   key={item}
-                  href={`/${item.toLowerCase()}`}
-                  className="nav-link text-main hover:text-secondary"
+                  href={
+                    item === "Enhance"
+                      ? "/tools?section=enhanceimage"
+                      : `/${item.toLowerCase()}`
+                  }
+                  className="nav-link text-main hover:text-gray-400"
                 >
                   {item}
                 </a>
@@ -119,7 +123,7 @@ const Navbar = () => {
             item === "Tools" ? (
               <div
                 key={item}
-                className="relative flex items-center space-x-1 group hover:text-secondary"
+                className="relative flex items-center space-x-1 group hover:text-gray-400"
               >
                 <span className="text-main">Tools</span>
                 <button
@@ -129,8 +133,8 @@ const Navbar = () => {
                   <ExpandMoreIcon
                     className={`transition-transform duration-200 ${
                       expandIconClick
-                        ? "rotate-180 text-secondary hover:cursor-pointer"
-                        : "text-main hover:text-secondary hover:cursor-pointer"
+                        ? "rotate-180 text-gray-400 hover:cursor-pointer"
+                        : "text-main hover:text-gray-400 hover:cursor-pointer"
                     }`}
                   />
                 </button>
@@ -142,7 +146,7 @@ const Navbar = () => {
                         <a
                           key={tool}
                           href={`/tools?section=${tool.toLowerCase()}`}
-                          className="block  text-main text-md hover:text-secondary py-2 transition-colors"
+                          className="block  text-main text-md hover:text-gray-400 py-2 transition-colors"
                         >
                           {tool}
                         </a>
@@ -154,8 +158,12 @@ const Navbar = () => {
             ) : (
               <a
                 key={item}
-                href={`/${item.toLowerCase()}`}
-                className="nav-link text-main hover:text-secondary"
+                href={
+                  item === "Enhance"
+                    ? "/tools?section=enhanceimage"
+                    : `/${item.toLowerCase()}`
+                }
+                className="nav-link text-main hover:text-gray-400"
               >
                 {item}
               </a>
@@ -164,7 +172,7 @@ const Navbar = () => {
           <div className="flex flex-col items-center space-y-3 mt-3">
             <a
               onClick={() => router.push("/signup")}
-              className="text-main text-lg py-2 hover:underline hover:text-secondary transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
+              className="text-main text-lg py-2 hover:underline hover:text-gray-400 transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
             >
               signup
             </a>

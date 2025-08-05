@@ -54,15 +54,15 @@ const testimonials: componentprops[] = [
 
 const Testimonial: React.FC = () => {
   return (
-    <div className="flex flex-col items-center space-y-8 py-4 w-full my-16 rounded-3xl overflow-hidden">
+    <div className="flex flex-col items-center space-y-4 md:space-y-8 w-full my-8 md:my-16 rounded-3xl overflow-hidden">
       {/* Headings */}
-      <div className="flex flex-col items-center space-y-4 mt-12">
+      <div className="flex flex-col items-center space-y-1 lg:space-y-2 mt-12">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center text-4xl md:text-5xl font-bold text-main"
+          className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-main"
         >
           don’t take our word for it.
           <br />
@@ -73,23 +73,23 @@ const Testimonial: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center text-2xl md:text-3xl text-gray-200 leading-snug"
+          className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 leading-snug"
         >
           read what they say!
         </motion.h2>
       </div>
 
       {/* Scrolling Testimonials */}
-      <div className="w-full overflow-hidden py-8 relative">
-        <div className="absolute top-0 left-0 h-full w-24 z-10 fade-left pointer-events-none"></div>
+      <div className="w-full overflow-hidden py-10 relative">
+        <div className="absolute top-0 left-0 h-full w-18 md:w-24 z-10 fade-left pointer-events-none"></div>
 
-        <div className="flex animate-infinite-scroll-slow space-x-4 w-max">
+        <div className="flex animate-infinite-scroll-slow space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 w-max">
           {[...testimonials, ...testimonials].map((testimonial, index) => (
             <Component key={index} {...testimonial} />
           ))}
         </div>
 
-        <div className="absolute top-0 right-0 h-full w-24  z-10 fade-right pointer-events-none"></div>
+        <div className="absolute top-0 right-0 h-full w-18 md:w-24 z-10 fade-right pointer-events-none"></div>
       </div>
     </div>
   );

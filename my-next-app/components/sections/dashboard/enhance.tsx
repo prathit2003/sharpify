@@ -113,39 +113,55 @@ const Enhance = () => {
         {/* Image Slider Section */}
         <div className="w-[70vw] lg:w-1/3 rounded-2xl shadow-2xl">
           <div className="aspect-[4/4] w-full rounded-2xl overflow-hidden">
-            <ImageSlider path="/images/clear.jpg" />
+            <ImageSlider path="/images/clear.webp" />
           </div>
         </div>
 
         {/* Upload Section */}
-        <div className="flex flex-col items-center justify-center gap-8 bg-card rounded-2xl shadow-2xl p-4 w-full lg:w-1/2 max-w-[500px]">
+        <div className="flex flex-col items-center justify-center gap-8 bg-card rounded-2xl shadow-2xl p-4 w-full lg:w-1/4 max-w-[500px]">
           <div className="border-[#ff9900] rounded-2xl border-2 p-4 w-full">
             {/* Icon Row */}
-            <div className="space-y-8 p-4">
+            <div className="space-y-4 p-4">
               <div className="flex items-center justify-center space-x-4">
                 <img
                   src="/images/blur.webp"
-                  className="w-14 h-14 object-cover rounded-xl border-2 shadow-2xl border-gray-300"
+                  className="w-8 md:w-10 lg:w-12 aspect-square object-cover rounded-xl border-2 shadow-2xl border-gray-300"
                   alt="Blurred"
                 />
                 <ArrowRightAltIcon fontSize="medium" className="text-main" />
                 <img
-                  src="/images/clear.jpg"
-                  className="w-14 h-14 object-cover rounded-xl border-2 shadow-2xl border-gray-300"
+                  src="/images/clear.webp"
+                  className="w-8 md:w-10 lg:w-12 aspect-square object-cover rounded-xl border-2 shadow-2xl border-gray-300"
                   alt="Clear"
                 />
               </div>
-              <h1 className="text-gray-200 font-bold text-center text-lg">
-                AI Enhance
-              </h1>
+              <div className="space-y-2 flex flex-col items-center justify-center ">
+                <h1 className="text-gray-200 font-bold text-center text-xs md:text-sm lg:text-base">
+                  Refyned.AI Enhance
+                </h1>
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={inputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <Button
+                  onClick={handleBrowseClick}
+                  className="mb-4 px-8 py-4 text-xs sm:text-sm md:text-base text-main rounded-xl bg-secondary hover:scale-105 transition duration-300 ease-in-out flex items-center gap-2"
+                  type="button"
+                >
+                  <UploadIcon sx={{ fontSize: 20, color: "#ffffff" }} />
+                  Browse files
+                </Button>
+              </div>
             </div>
 
             {/* Drop Zone */}
             <div
-              className={`flex flex-col items-center justify-center p-6 rounded-2xl w-full dashed-border shadow-2xl cursor-pointer transition ${
-                dragActive ? "bg-secondary/20" : ""
+              className={`flex flex-col items-center justify-center p-6 rounded-2xl bg-white/30 w-full dashed-border shadow-2xl cursor-pointer transition ${
+                dragActive ? "bg-white/60" : ""
               }`}
-              onClick={handleBrowseClick}
               onDragOver={(e) => {
                 e.preventDefault();
                 setDragActive(true);
@@ -153,20 +169,6 @@ const Enhance = () => {
               onDragLeave={() => setDragActive(false)}
               onDrop={handleDrop}
             >
-              <input
-                type="file"
-                accept="image/*"
-                ref={inputRef}
-                onChange={handleFileChange}
-                className="hidden"
-              />
-              <Button
-                className="mb-4 px-8 py-4 text-sm sm:text-base md:text-lg text-main rounded-xl bg-secondary hover:scale-105 transition duration-300 ease-in-out flex items-center gap-2"
-                type="button"
-              >
-                <UploadIcon sx={{ fontSize: 20, color: "#ffffff" }} />
-                Browse files
-              </Button>
               <h1 className="text-gray-200 text-center text-lg">
                 or drop your image here
               </h1>

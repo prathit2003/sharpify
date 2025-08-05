@@ -9,7 +9,7 @@ const fadeIn = {
     y: 0,
     transition: {
       delay: i * 0.2,
-      duration: 0.6,
+      duration: 0.4,
       ease: "easeOut",
     },
   }),
@@ -17,22 +17,36 @@ const fadeIn = {
 
 const Feature = () => {
   return (
-    <div className="flex flex-col items-center space-y-8 w-full my-24 px-4 sm:px-6">
-      <motion.h1
-        className="text-main font-bold text-center text-wrap max-w-3xl text-xl sm:text-2xl md:text-3xl lg:text-5xl"
+    <div className="flex flex-col items-center sm:space-y-4 space-y-6 w-full my-8 sm:my-12 md:my-18 lg:my-24 px-4 sm:px-6">
+      <motion.div
+        className="space-y-2 text-center max-w-3xl"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.3 }}
         variants={fadeIn}
         custom={0}
       >
-        An entire stack of tools that keeps your Creativity moving
-      </motion.h1>
-
+        <motion.h1
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-xl md:text-3xl lg:text-4xl font-bold  text-main"
+        >
+          An entire stack of tools <br /> that keeps your Creativity moving
+        </motion.h1>
+        <motion.h3
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-sm md:text-md lg:text-xl text-gray-400"
+        >
+          Try our futuristic tools.
+        </motion.h3>
+      </motion.div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 p-2 sm:p-4 md:p-6 rounded-xl w-full max-w-[90vw]">
         {/* Card 1 */}
         <motion.div
-          className="col-span-1 sm:col-span-2 md:col-span-3 row-span-3 bg-card rounded-2xl shadow-xl p-6 flex flex-col justify-between"
+          className="col-span-1 sm:col-span-2 md:col-span-3 row-span-3 bg-cardNoshadow  hover:bg-card rounded-2xl  p-6 flex flex-col justify-between"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
@@ -40,7 +54,7 @@ const Feature = () => {
           custom={1}
         >
           <div>
-            <div className="text-xs lg:text-sm text-main">
+            <div className="text-xs lg:text-sm text-main ">
               Powered by Refyned AI
             </div>
             <div className="flex items-center justify-start space-x-4 my-4">
@@ -57,7 +71,7 @@ const Feature = () => {
               />
             </div>
           </div>
-          <h3 className="text-main text-base sm:text-lg lg:text-xl">
+          <h3 className="text-main font-semibold text-base sm:text-lg lg:text-xl">
             AI Image Enhancement
           </h3>
           <p className="text-gray-300 text-sm lg:text-md">
@@ -68,17 +82,17 @@ const Feature = () => {
 
         {/* Card 2 */}
         <motion.div
-          className="col-span-1 sm:col-span-2 md:col-span-3 row-span-3 bg-card rounded-2xl shadow-xl p-6 flex flex-col relative overflow-hidden"
+          className="col-span-1 sm:col-span-2 md:col-span-3 row-span-3 bg-cardNoshadow  hover:bg-card rounded-2xl p-6 flex flex-col relative overflow-hidden"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           variants={fadeIn}
           custom={2}
         >
-          <h3 className="text-main text-base sm:text-lg md:text-xl">
+          <h3 className="text-main font-semibold text-base sm:text-lg md:text-xl">
             Seamless Format Conversion
           </h3>
-          <p className="text-gray-300 text-sm md:text-md mt-1 mb-6">
+          <p className="text-gray-400 text-sm md:text-md mt-1 mb-6">
             Convert images between JPG, PNG, WEBP, and more. Preserve quality,
             save time.
           </p>
@@ -103,7 +117,7 @@ const Feature = () => {
 
         {/* Card 3 */}
         <motion.div
-          className="col-span-1 sm:col-span-2 md:col-span-2 row-span-3 bg-card rounded-2xl shadow-xl p-6"
+          className="col-span-1 sm:col-span-2 md:col-span-2 row-span-3 bg-cardNoshadow  hover:bg-card  rounded-2xl  p-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
@@ -130,10 +144,10 @@ const Feature = () => {
               className="w-8 h-10 object-cover"
             />
           </div>
-          <h3 className="text-main text-base sm:text-lg">
+          <h3 className="text-main font-semibold text-base sm:text-lg">
             Smart Image Compression
           </h3>
-          <p className="text-gray-300 text-sm mt-1">
+          <p className="text-gray-400 text-sm mt-1">
             Shrink file sizes without quality loss. Optimized for web, mobile,
             and email.
           </p>
@@ -141,17 +155,17 @@ const Feature = () => {
 
         {/* Card 4 */}
         <motion.div
-          className="col-span-1 sm:col-span-2 md:col-span-4 row-span-3 bg-card rounded-2xl shadow-xl p-6"
+          className="col-span-1 sm:col-span-2 md:col-span-4 row-span-3 bg-cardNoshadow  hover:bg-card  rounded-2xl p-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           variants={fadeIn}
           custom={4}
         >
-          <h3 className="text-main text-base sm:text-lg">
+          <h3 className="text-main font-semibold text-base sm:text-lg">
             Turn Prompts into Pictures with One Click
           </h3>
-          <p className="text-gray-300 text-sm mt-2">
+          <p className="text-gray-400 text-sm mt-2">
             Type anything you imagine, and we will generate a beautiful image in
             seconds.
           </p>
@@ -190,7 +204,7 @@ const Feature = () => {
                 disabled
                 className="bg-secondary text-main font-medium py-2 px-4 rounded-full flex items-center gap-2"
               >
-                <span className="text-sm">Generating</span>
+                <span className="text-sm ">Generating</span>
                 <svg
                   className="w-4 h-4 animate-spin"
                   xmlns="http://www.w3.org/2000/svg"

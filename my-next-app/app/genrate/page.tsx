@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Topbar from "@/components/sections/dashboard/topbar";
 import Sidebar from "@/components/ui/genSidebar";
 import GenrateImage from "@/components/sections/dashboard/genrate";

@@ -51,11 +51,11 @@ export default function GetStarted() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
               viewport={{ once: false }}
-              className="flex max-w-md gap-x-4"
+              className=" max-w-md gap-x-4"
             >
               <Button
                 onClick={handlegetstarted}
-                className="mt-2 sm:mt-6 px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-main font-semibold rounded-3xl bg-secondary hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out flex items-center group mx-auto lg:mx-0"
+                className="mt-2 sm:mt-6 px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-main font-semibold rounded-3xl bg-secondary hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out flex items-center group mx-0"
               >
                 Get Started
                 <svg
