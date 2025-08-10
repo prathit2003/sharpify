@@ -3,17 +3,6 @@ import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
-const col1images = [
-  { src: "images/grid3.webp" },
-  { src: "images/grid4.webp" },
-  { src: "images/grid5.webp" },
-];
-const col2images = [
-  { src: "images/grid6.webp" },
-  { src: "images/grid8.webp" },
-  { src: "images/grid9.webp" },
-];
-
 const Hero = () => {
   return (
     <section className="relative flex flex-col-reverse md:flex-row items-center justify-between px-4 sm:px-8 lg:px-16 py-12 gap-4 md:gap-12 w-full min-h-screen overflow-hidden">
@@ -23,7 +12,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0.5, 0.8, 0.5],
-          y: [0, 12, 0], // parallax bounce
+          y: [0, 12, 0],
         }}
         transition={{
           duration: 16,
@@ -33,27 +22,25 @@ const Hero = () => {
       >
         <svg
           aria-hidden="true"
-          className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-600 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
+          className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2  stroke-white [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
         >
           <defs>
             <pattern
               id="blogverse-pattern"
               x="50%"
               y={-1}
-              width={200}
-              height={200}
+              width={70}
+              height={70}
               patternUnits="userSpaceOnUse"
             >
-              <path d="M100 200V.5M.5 .5H200" fill="none" />
+              <path
+                d="M70 0V70M0 0H70"
+                fill="none"
+                stroke="white"
+                strokeWidth="1"
+              />
             </pattern>
           </defs>
-
-          <svg x="50%" y={-1} className="overflow-visible fill-gray-300">
-            <path
-              d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
-              strokeWidth={0}
-            />
-          </svg>
 
           <rect
             fill="url(#blogverse-pattern)"
@@ -65,8 +52,8 @@ const Hero = () => {
       </motion.div>
 
       {/* Left/bottom Content */}
-      <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 md:gap-6 max-w-[60vw] md:max-w-[40vw]  z-10">
-        <h1 className="text-main text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
+      <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-1 md:gap-2  max-w-[60vw] md:max-w-[40vw]  z-10">
+        <h1 className="text-main text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug">
           Create and enhance stunning images with Refyned,
           <br className="hidden sm:block" /> free and online.
         </h1>
@@ -101,7 +88,7 @@ const Hero = () => {
       </div>
       <div className=" max-w-[60vw] md:max-w-[40vw] p-8">
         <img
-          src="/images/hero.webp"
+          src="/images/signup.jpg"
           alt="image depicting traveling, food, and history"
           className="aspect-square h-full object-cover rounded-3xl  shadow-2xl transform hover:scale-105 hover:-rotate-1 transition duration-500"
         />

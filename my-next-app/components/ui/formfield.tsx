@@ -9,6 +9,7 @@ const FormField = ({ label, id, type, placeholder, onChange }: any) => (
       placeholder={placeholder}
       required
       onChange={onChange}
+      className="bg-black/50  border-white/20"
     />
   </div>
 );

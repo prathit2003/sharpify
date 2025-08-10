@@ -7,13 +7,12 @@ import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import useAuthStore from "@/app/store/authatom";
 import usePopupStore from "@/app/store/popupsatom";
-
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const { email, setEmail, password, setPassword, reset } = useAuthStore();
-
+  const { setSignUppopup, setSignInpopup } = usePopupStore();
   const handlelogin = async () => {
     try {
       const result = await signIn("credentials", {
@@ -22,6 +21,9 @@ export function LoginForm({
         redirect: true,
         callbackUrl: "/dashboard",
       });
+      if (result?.status === 200) {
+        setSignInpopup(false);
+      }
       if (result?.error) {
         console.log(result.error);
         return;
@@ -35,7 +37,7 @@ export function LoginForm({
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 text-white shadow-xl rounded-2xl",
+        "flex flex-col gap-6 text-main shadow-xl rounded-2xl",
         className
       )}
       {...props}
@@ -47,7 +49,7 @@ export function LoginForm({
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-balance text-muted-foreground">
-                  Login to your sharpify account
+                  Login to your Refyned.AI account
                 </p>
               </div>
               <div className="grid gap-2">
@@ -55,11 +57,12 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="refyned@example.com"
                   required
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  className="bg-black/50  border-white/20"
                 />
               </div>
               <div className="grid gap-2">
@@ -76,14 +79,16 @@ export function LoginForm({
                   id="password"
                   type="password"
                   required
+                  placeholder="********"
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
+                  className="bg-black/50  border-white/20"
                 />
               </div>
               <Button
                 type="submit"
-                className="w-full bg-gradient-purple hover:scale-105 hover:cursor-pointer"
+                className="w-full bg-secondary hover:scale-105 cursor-pointer"
                 onClick={handlelogin}
               >
                 Login
@@ -101,7 +106,6 @@ export function LoginForm({
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Login with Apple</span>
                 </Button>
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -110,7 +114,6 @@ export function LoginForm({
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Login with Google</span>
                 </Button>
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -119,12 +122,17 @@ export function LoginForm({
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Login with Meta</span>
                 </Button>
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="/signup" className="underline underline-offset-4">
+                <a
+                  className="underline underline-offset-4 cursor-pointer"
+                  onClick={() => {
+                    setSignInpopup(false);
+                    setSignUppopup(true);
+                  }}
+                >
                   Sign up
                 </a>
               </div>

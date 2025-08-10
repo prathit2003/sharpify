@@ -5,8 +5,10 @@ import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import useUIStore from "@/app/store/UIatom";
-import { SpanStatus } from "next/dist/trace";
+import usePopupStore from "@/app/store/popupsatom";
+import { useCheckAuth } from "@/app/utility/isloggedin";
 const Navbar = () => {
+  const { setSignInpopup, setSignUppopup } = usePopupStore();
   const {
     isMobileMenuOpen,
     setIsMobileMenuOpen,
@@ -31,7 +33,7 @@ const Navbar = () => {
           />
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {["Tools", "Generate", "Enhance", "API"].map((item) =>
+            {["Tools", "Genrate", "Enhance", "API"].map((item) =>
               item === "Tools" ? (
                 <div
                   key={item}
@@ -89,14 +91,14 @@ const Navbar = () => {
         {/* Desktop Buttons */}
         <div className="hidden lg:flex items-center space-x-4">
           <a
-            onClick={() => router.push("/signup")}
+            onClick={() => setSignUppopup(true)}
             className="text-main text-lg py-2 hover:underline hover:text-secondary transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
           >
             signup
           </a>
           <div className="h-6 w-[1px] bg-white" />
           <Button
-            onClick={() => router.push("/signin")}
+            onClick={() => setSignInpopup(true)}
             className="bg-secondary rounded-2xl text-main text-lg font-semibold py-2 px-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer"
           >
             Signin
@@ -171,13 +173,13 @@ const Navbar = () => {
           )}
           <div className="flex flex-col items-center space-y-3 mt-3">
             <a
-              onClick={() => router.push("/signup")}
+              onClick={() => setSignUppopup(true)}
               className="text-main text-lg py-2 hover:underline hover:text-gray-400 transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
             >
               signup
             </a>
             <Button
-              onClick={() => router.push("/signin")}
+              onClick={() => setSignInpopup(true)}
               className="bg-secondary rounded-2xl text-main text-lg font-semibold py-2 px-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer"
             >
               Signin

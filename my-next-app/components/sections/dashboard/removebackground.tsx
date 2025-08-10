@@ -15,7 +15,11 @@ const Removebg = () => {
   const setFinalUrl = useBECstore((state) => state.setFinalUrl);
   const { data: session } = useSession();
   const token = (session as any)?.accessToken;
-
+  const clearFile = () => {
+    setImage(null);
+    setFilename("");
+    setFinalUrl("");
+  };
   const inputRef = useRef<HTMLInputElement>(null);
   const removebackground = async () => {
     try {
@@ -80,14 +84,17 @@ const Removebg = () => {
                 <div className="relative flex items-center gap-4 pl-4 pr-8 py-3 border border-amber-500 rounded-xl shadow-md bg-card">
                   {/* File Info */}
                   <button
-                    className="absolute top-0.5 right-1 text-main hover:text-secondary transition-colors"
+                    className="absolute top-0.5 right-1 text-main hover:text-gray-400 transition-colors"
                     aria-label="Remove file"
+                    onClick={clearFile}
                   >
                     <HighlightOffIcon fontSize="small" />
                   </button>
                   <div className="flex flex-col text-left">
                     <h1 className="text-sm font-semibold text-main break-words">
-                      {image.name}
+                      {image.name.length > 5
+                        ? image.name.substring(0, 5) + "..."
+                        : image.name}
                     </h1>
                     <p className="text-xs text-gray-400">
                       {(image.size / 1024).toFixed(2)} KB
@@ -100,7 +107,7 @@ const Removebg = () => {
                   size={"lg"}
                   onClick={removebackground}
                 >
-                  genrate
+                  Remove Background
                   <span className="ml-2 flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -135,14 +142,21 @@ const Removebg = () => {
           </div>
           <div className="relative flex flex-col gap-1 px-4 py-3 border border-amber-500 rounded-lg shadow-md">
             {/* Close Icon */}
-            <button className="absolute top-1 right-1 text-main hover:text-secondary">
+            <button
+              className="absolute top-1 right-1 text-main hover:text-gray-400"
+              aria-label="Remove file"
+              onClick={clearFile}
+            >
               <HighlightOffIcon fontSize="small" />
             </button>
 
             {/* File Info */}
             <div className="flex flex-col">
               <h1 className="text-sm font-medium text-main break-all">
-                {Filename}
+                {Filename &&
+                  (Filename.length > 5
+                    ? Filename.substring(0, 5) + "..."
+                    : Filename)}
               </h1>
             </div>
           </div>

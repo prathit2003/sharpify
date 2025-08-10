@@ -6,13 +6,15 @@ import Enhance from "@/components/sections/dashboard/enhance";
 import Resize from "@/components/sections/dashboard/resize";
 import Removebg from "@/components/sections/dashboard/removebackground";
 import ChangeFormat from "@/components/sections/dashboard/changeformat";
+import { useCheckAuth } from "../utility/isloggedin";
 const Home = () => {
+  useCheckAuth();
   const isSmall = useMediaQuery("(max-width: 640px)");
   const isMedium = useMediaQuery("(max-width: 1024px)");
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const sectionParam = searchParams.get("section") || "enhance";
+  const sectionParam = searchParams.get("section") || "";
   const [activeSectionKey, setActiveSectionKey] = useState(sectionParam);
 
   useEffect(() => {

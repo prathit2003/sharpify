@@ -19,7 +19,11 @@ const Resize = () => {
   const token = (session as any)?.accessToken;
   const [quality, setQuality] = useState(80);
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const clearFile = () => {
+    setImage(null);
+    setFilename("");
+    setFinalUrl("");
+  };
   const handleResize = async () => {
     if (!image) return;
     try {
@@ -95,14 +99,17 @@ const Resize = () => {
                 <div className="relative flex items-center gap-4 pl-4 pr-8 py-3 border border-amber-500 rounded-xl shadow-md bg-card">
                   {/* File Info */}
                   <button
-                    className="absolute top-0.5 right-1 text-main hover:text-secondary transition-colors"
+                    className="absolute top-0.5 right-1 text-main hover:text-gray-400 transition-colors"
                     aria-label="Remove file"
+                    onClick={clearFile}
                   >
                     <HighlightOffIcon fontSize="small" />
                   </button>
                   <div className="flex flex-col text-left">
-                    <h1 className="text-sm font-semibold text-main break-words">
-                      {image.name}
+                    <h1 className="text-sm font-semibold text-main  break-words">
+                      {image.name.length > 5
+                        ? image.name.substring(0, 5) + "..."
+                        : image.name}
                     </h1>
                     <p className="text-xs text-gray-400">
                       {(image.size / 1024).toFixed(2)} KB
@@ -156,7 +163,10 @@ const Resize = () => {
             {/* File Info */}
             <div className="flex flex-col">
               <h1 className="text-sm font-medium text-main break-all">
-                {Filename}
+                {Filename &&
+                  (Filename.length > 5
+                    ? Filename.substring(0, 5) + "..."
+                    : Filename)}
               </h1>
               <p className="text-xs text-gray-500">
                 {(FileSize / 1024).toFixed(2)} KB

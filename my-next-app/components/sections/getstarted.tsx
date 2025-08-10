@@ -38,7 +38,7 @@ export default function GetStarted() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.4, ease: "easeOut", delay: 0.2 }}
               viewport={{ once: false }}
-              className="mt-4 text-sm lg:text-lg text-gray-300"
+              className="mt-2 text-sm lg:text-lg text-gray-300"
             >
               Enhance your images effortlessly with our AI-powered tool. Say
               goodbye to manual editing and hello to stunning results in
@@ -55,7 +55,7 @@ export default function GetStarted() {
             >
               <Button
                 onClick={handlegetstarted}
-                className="mt-2 sm:mt-6 px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-main font-semibold rounded-3xl bg-secondary hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out flex items-center group mx-0"
+                className="mt-4 px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-main font-semibold rounded-3xl bg-secondary hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out flex items-center group mx-0"
               >
                 Get Started
                 <svg

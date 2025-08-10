@@ -3,9 +3,10 @@ import Topbar from "@/components/sections/dashboard/topbar";
 import Sidebar from "@/components/ui/genSidebar";
 import GenrateImage from "@/components/sections/dashboard/genrate";
 import useUIStore from "../store/UIatom";
+import { useCheckAuth } from "@/app/utility/isloggedin";
 export default function ChatLayout() {
+  useCheckAuth();
   const { isMobileMenuOpen } = useUIStore();
-
   return (
     <div className="relative h-[100vh] w-[100vw] bg-main flex flex-col p-6 space-y-6 overflow-hidden">
       <Topbar />
