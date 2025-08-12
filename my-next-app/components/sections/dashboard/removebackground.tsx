@@ -47,9 +47,11 @@ const Removebg = () => {
   return (
     <>
       {final_url === "" && (
-        <div className="flex flex-col items-center justify-center gap-4 w-full p-8 text-center">
-          <h1 className="text-4xl font-bold text-main">Remove background</h1>
-          <p className="text-lg -mt-2 text-gray-400">
+        <div className="flex flex-col items-center justify-center gap-4 w-full p-4 md:p-8 text-center">
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-main">
+            Remove background
+          </h1>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg -mt-2 text-gray-400">
             Remove background of your image without losing its quality using
             Refyned.AI.
           </p>
@@ -67,21 +69,23 @@ const Removebg = () => {
                 }}
               />
               <Button
-                className="group relative rounded-xl gap-3 bg-secondary text-main hover:scale-105 w-full"
+                className="group relative rounded-xl gap-2 bg-secondary text-sm sm:text-base md:text-lg lg:text-xl text-main hover:scale-105 w-full"
                 onClick={() => inputRef.current?.click()}
               >
                 Upload Image
-                <UploadIcon />
+                <UploadIcon fontSize="small" />
               </Button>
             </div>
           )}
           <div className="dashed-border rounded-xl bg-white/80 flex items-center justify-center w-[25vw] aspect-video">
-            <p className="text-xl text-main">or drop your files here</p>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-main">
+              or drop your files here
+            </p>
           </div>
           {image && (
-            <div className="w-[25vw] space-y-2">
+            <div className="w-full space-y-2">
               <div className="flex items-center justify-center gap-4 w-full">
-                <div className="relative flex items-center gap-4 pl-4 pr-8 py-3 border border-amber-500 rounded-xl shadow-md bg-card">
+                <div className="relative flex justify-start  py-2 sm:pl-3 md:pl-4 rounded-xl bg-main w-1/4">
                   {/* File Info */}
                   <button
                     className="absolute top-0.5 right-1 text-main hover:text-gray-400 transition-colors"
@@ -91,20 +95,19 @@ const Removebg = () => {
                     <HighlightOffIcon fontSize="small" />
                   </button>
                   <div className="flex flex-col text-left">
-                    <h1 className="text-sm font-semibold text-main break-words">
-                      {image.name.length > 5
-                        ? image.name.substring(0, 5) + "..."
+                    <h1 className="text-[10px] sm:text-[12px] md:text-[14px] font-semibold text-main break-words">
+                      {image.name.length > 8
+                        ? image.name.substring(0, 8) + "..."
                         : image.name}
                     </h1>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-[8px] sm:text-[10px] md:text-[12px] text-gray-400">
                       {(image.size / 1024).toFixed(2)} KB
                     </p>
                   </div>
                 </div>
 
                 <Button
-                  className="group relative rounded-xl gap-4 p-6 bg-secondary text-main hover:scale-105 shadow-md hover:shadow-xl"
-                  size={"lg"}
+                  className="group relative rounded-xl py-1 gap-2 px-3 md:gap-4 md:py-3 md:px-6 bg-secondary text-main hover:scale-105 shadow-md hover:shadow-xl"
                   onClick={removebackground}
                 >
                   Remove Background
@@ -132,13 +135,17 @@ const Removebg = () => {
       )}
       {typeof final_url === "string" && final_url != "" && (
         <div className="flex flex-col items-center justify-center gap-4 w-full p-8 text-center">
-          <h1 className="text-4xl font-bold text-main">Remove background</h1>
-          <p className="text-lg text-gray-400">
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-main">
+            Remove background
+          </h1>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg -mt-2 text-gray-400">
             Remove background of your image without losing its quality using
             Refyned.AI.
           </p>
           <div className="dashed-border rounded-xl bg-white/80 flex items-center justify-center w-[25vw] aspect-video">
-            <p className="text-xl text-main">or drop your files here</p>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-main">
+              or drop your files here
+            </p>
           </div>
           <div className="relative flex flex-col gap-1 px-4 py-3 border border-amber-500 rounded-lg shadow-md">
             {/* Close Icon */}
@@ -163,7 +170,7 @@ const Removebg = () => {
           <a
             href={final_url as string}
             download
-            className="flex item-center bg-secondary text-main rounded-xl py-4 px-6 hover:scale-105"
+            className="flex item-center bg-secondary text-main rounded-xl py-2 px-3 md:py-4 md:px-6 hover:scale-105"
           >
             Download
             <DownloadIcon fontSize="small" />

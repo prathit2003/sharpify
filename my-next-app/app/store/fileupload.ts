@@ -12,6 +12,9 @@ interface ImageState {
 
   FileSize: number;
   setFileSize: (size: number) => void;
+
+  Resize: number;
+  setResize: (resize: number) => void;
 }
 
 const useImageStore = create<ImageState>((set) => ({
@@ -26,6 +29,9 @@ const useImageStore = create<ImageState>((set) => ({
 
   FileSize: 0,
   setFileSize: (size) => set({ FileSize: size }),
+
+  Resize: 0,
+  setResize: (resize) => set({ Resize: resize }),
 }));
 
 export default useImageStore;

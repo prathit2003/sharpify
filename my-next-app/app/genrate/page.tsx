@@ -26,7 +26,7 @@ export default function ChatLayout() {
 
       {/* Mobile Sidebar (absolute positioned) */}
       {isMobileMenuOpen && (
-        <div className="absolute top-0 left-0 z-20 w-[70vw] h-full md:hidden bg-main shadow-xl p-4">
+        <div className="absolute top-0 left-0 z-20 w-[40vw] h-full md:hidden bg-main p-4">
           <Sidebar />
         </div>
       )}

@@ -16,18 +16,23 @@ const Topbar = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useUIStore();
   return (
     <div className="flex items-center justify-between w-full bg-header py-4 px-6 rounded-2xl">
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2 md:space-x-4">
         <Button
-          className="md:hidden p-2 rounded-lg bg-header hover:scale-105 transition-all hover:cursor-pointer"
+          className="md:hidden rounded-xl bg-header hover:scale-105 transition-all hover:cursor-pointer !p-0"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <MenuIcon className="h-5 w-5 text-main" />
         </Button>
-        <img
-          src="/icons/logo.svg"
-          alt="Icon"
-          className="h-6 lg:h-8 w-auto mx-2"
-        />
+        <div className="flex items-center justify-between space-x-1 md:space-x-2">
+          <img
+            src="/icons/favicon.svg"
+            alt="Logo"
+            className="h-6 md:h-8 w-auto"
+          />
+          <span className="text-main text-lg sm:text-xl md:text-2xl font-bold">
+            Refyned.AI
+          </span>
+        </div>
       </div>
       <motion.div
         whileHover={{ scale: 1.05 }}

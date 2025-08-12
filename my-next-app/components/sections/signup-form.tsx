@@ -43,7 +43,6 @@ export function Signupform({
         email,
         password,
         redirect: false,
-        callbackUrl: "/home",
       });
       if (res?.status === 200) {
         setSignUppopup(false);

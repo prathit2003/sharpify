@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
-    maxAge: 7 * 24 * 60 * 60,
+    maxAge: 7 * 24 * 60 * 60, // 7 days
   },
 
   providers: [
@@ -37,7 +37,13 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid email or password");
         }
 
-        return { id: user.id.toString(), email: user.email };
+        // Return username + email + profile picture
+        return {
+          id: user.id.toString(),
+          email: user.email,
+          username: user.username,
+          ProfilePic: user.ProfilePic ?? null,
+        };
       },
     }),
   ],
@@ -46,12 +52,19 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         const signedToken = jwt.sign(
-          { sub: user.id, email: user.email },
+          {
+            sub: user.id,
+            email: user.email,
+            username: user.username,
+            ProfilePic: user.ProfilePic,
+          },
           process.env.NEXTAUTH_SECRET!,
           { expiresIn: "7d" }
         );
         token.accessToken = signedToken;
         token.email = user.email;
+        token.username = user.username;
+        token.ProfilePic = user.ProfilePic;
       }
       return token;
     },
@@ -59,12 +72,17 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session.user) {
         session.user.email = token.email as string;
+        // @ts-ignore
+        session.user.username = token.username as string;
+        // @ts-ignore
+        session.user.ProfilePic = token.ProfilePic as string | null;
       }
       (session as any).accessToken = token.accessToken;
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      return "/dashboard";
+
+    async redirect({ baseUrl }) {
+      return baseUrl;
     },
   },
 

@@ -71,12 +71,12 @@ const Enhance = () => {
   // === When Image Is Enhanced (final_url exists) ===
   if (final_url) {
     return (
-      <div className="flex flex-col items-center space-y-12 p-4">
-        <h1 className="text-main text-3xl font-extrabold text-center">
+      <div className="flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-12 p-4">
+        <h1 className="text-main text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-center">
           Enhanced Image
         </h1>
 
-        <div className="w-full max-w-md aspect-[4/4] rounded-2xl overflow-hidden shadow-2xl">
+        <div className="hidden md:block w-full max-w-md  aspect-[4/4] rounded-2xl overflow-hidden shadow-2xl">
           <ImageSlider path={final_url} />
         </div>
 
@@ -97,10 +97,10 @@ const Enhance = () => {
     <div className="flex flex-col items-center space-y-8 w-full max-w-screen-xl max-h-full">
       {/* Heading */}
       <div className="w-full text-center">
-        <h1 className="text-main text-3xl font-extrabold">
+        <h1 className="text-main text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold">
           Free Photo Enhancer
         </h1>
-        <p className="text-gray-300 text-lg mt-2">
+        <p className="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg mt-2">
           Make photos clearer and sharper in just a click with AI-powered
           technology. The Picsart Photo Enhancer boosts image quality, adds
           detail, and gets your photos ready to share. Plus, you can save
@@ -111,7 +111,7 @@ const Enhance = () => {
       {/* Content Area */}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-12 w-full px-2">
         {/* Image Slider Section */}
-        <div className="w-[70vw] lg:w-1/3 rounded-2xl shadow-2xl">
+        <div className="hidden md:flex w-1/3 rounded-2xl shadow-2xl">
           <div className="aspect-[4/4] w-full rounded-2xl overflow-hidden">
             <ImageSlider path="/images/clear.webp" />
           </div>
@@ -169,7 +169,7 @@ const Enhance = () => {
               onDragLeave={() => setDragActive(false)}
               onDrop={handleDrop}
             >
-              <h1 className="text-gray-200 text-center text-lg">
+              <h1 className="text-gray-200 text-center text-sm md:text-base lg:text-lg">
                 or drop your image here
               </h1>
             </div>

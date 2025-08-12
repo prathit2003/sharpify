@@ -2,7 +2,7 @@
 
 import useImageStore from "@/app/store/fileupload";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import useBECstore from "@/app/store/backendcallsatom";
 import { useSession } from "next-auth/react";
@@ -10,9 +10,19 @@ import { Slider } from "@/components/ui/slider";
 import DownloadIcon from "@mui/icons-material/Download";
 import UploadIcon from "@mui/icons-material/Upload";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 const Resize = () => {
-  const { image, setImage, Filename, setFilename, FileSize, setFileSize } =
-    useImageStore();
+  const {
+    image,
+    setImage,
+    Filename,
+    setFilename,
+    FileSize,
+    setFileSize,
+    Resize,
+    setResize,
+  } = useImageStore();
   const final_url = useBECstore((state) => state.final_url);
   const setFinalUrl = useBECstore((state) => state.setFinalUrl);
   const { data: session } = useSession();
@@ -30,7 +40,7 @@ const Resize = () => {
       const formData = new FormData();
       formData.append("file", image);
       formData.append("quality", quality.toString());
-
+      formData.append("resize", Resize.toString());
       const response = await axios.post(
         "http://localhost:8000/api/reducesize",
         formData,
@@ -94,6 +104,17 @@ const Resize = () => {
                 <p className="text-sm text-gray-300 mt-2">
                   Quality: {quality}%
                 </p>
+              </div>
+              <div className="w-full flex flex-col space-y-1 items-start">
+                <Label className="text-sm sm:text-base md:text-lg text-main">
+                  Enter the file size in KB
+                </Label>
+                <Input
+                  className="w-full bg-main text-main border-white/20"
+                  type="text"
+                  placeholder="0 KB"
+                  onChange={(e) => setResize(Number(e.target.value))}
+                ></Input>
               </div>
               <div className="flex items-center justify-center gap-4 w-full">
                 <div className="relative flex items-center gap-4 pl-4 pr-8 py-3 border border-amber-500 rounded-xl shadow-md bg-card">

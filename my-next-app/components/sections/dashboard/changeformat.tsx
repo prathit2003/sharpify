@@ -137,7 +137,7 @@ const ChangeFormat = () => {
                   size={"lg"}
                   onClick={changeFormatOfImage}
                 >
-                  Remove Background
+                  Change Format
                   <span className="ml-2 flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

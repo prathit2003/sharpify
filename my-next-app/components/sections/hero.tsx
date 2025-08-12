@@ -5,7 +5,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const Hero = () => {
   return (
-    <section className="relative flex flex-col-reverse md:flex-row items-center justify-between px-4 sm:px-8 lg:px-16 py-12 gap-4 md:gap-12 w-full min-h-screen overflow-hidden">
+    <section className="relative flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 lg:px-16 py-12 mt-12 sm:mt-8 md:mt-0 gap-4 md:gap-12 w-full min-h-screen overflow-hidden">
       {/* Background Grid */}
       <motion.div
         className="absolute inset-0 overflow-hidden backdrop-blur-sm"
@@ -53,12 +53,12 @@ const Hero = () => {
 
       {/* Left/bottom Content */}
       <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-1 md:gap-2  max-w-[60vw] md:max-w-[40vw]  z-10">
-        <h1 className="text-main text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug">
+        <h1 className="text-main text-xl sm:text-2xl md:text-4xl font-extrabold leading-snug">
           Create and enhance stunning images with Refyned,
           <br className="hidden sm:block" /> free and online.
         </h1>
 
-        <p className="text-gray-400 text-base sm:text-lg md:text-xl">
+        <p className="text-gray-400 text-sm sm:text-base md:text-lg">
           Enhance. Erase. Generate. Convert. Compress. All without losing
           quality, with Refyned.
         </p>
@@ -86,7 +86,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <div className=" max-w-[60vw] md:max-w-[40vw] p-8">
+      <div className="max-w-[60vw] md:max-w-[40vw] p-8">
         <img
           src="/images/signup.jpg"
           alt="image depicting traveling, food, and history"
