@@ -57,7 +57,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden  my-16 px-4 md:px-8 lg:px-12 max-w-[70vw] mx-auto">
+    <section className="relative w-full overflow-hidden flex flex-col items-center  my-16 px-4 md:px-8 lg:px-12 max-w-[70vw] mx-auto">
       {/* Header section */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -109,14 +109,14 @@ export default function FAQ() {
       </motion.div>
 
       {/* FAQs */}
-      <div className="lg:space-y-4 space-y-2 w-full">
+      <div className="lg:space-y-4 space-y-2 w-[80%] p-4">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
 
           return (
             <motion.div
               key={index}
-              className="relative border-b border-white pb-3 rounded-md"
+              className="relative !shadow-lg bg-card rounded-xl"
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -126,7 +126,9 @@ export default function FAQ() {
                 onClick={() => toggleFAQ(index)}
                 className="flex justify-between items-center w-full text-left lg:text-xl md:text-lg text-sm py-4 px-4 transition duration-300"
               >
-                <span className="text-white">{faq.question}</span>
+                <span className="text-main text-sm sm:text-base md:text-lg lg:text-lg ">
+                  {faq.question}
+                </span>
                 <motion.span
                   initial={false}
                   animate={{ rotate: isOpen ? 180 : 0 }}

@@ -140,7 +140,7 @@ export function LoginForm({
           </form>
           <div className="relative hidden md:block w-full h-full">
             <img
-              src="/images/signin.jpg"
+              src="/images/signin.webp"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover"
             />

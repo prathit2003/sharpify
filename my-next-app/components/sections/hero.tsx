@@ -52,13 +52,14 @@ const Hero = () => {
       </motion.div>
 
       {/* Left/bottom Content */}
-      <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-1 md:gap-2  max-w-[60vw] md:max-w-[40vw]  z-10">
-        <h1 className="text-main text-xl sm:text-2xl md:text-4xl font-extrabold leading-snug">
-          Create and enhance stunning images with Refyned,
+      <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-1 md:gap-2  max-w-[60vw] md:max-w-[60vw]  z-10">
+        <h1 className="text-main text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug">
+          Create and enhance stunning images with{" "}
+          <span className="text-secondary"> Refyned</span>,
           <br className="hidden sm:block" /> free and online.
         </h1>
 
-        <p className="text-gray-400 text-sm sm:text-base md:text-lg">
+        <p className="text-gray-200 text-lg sm:xl md:text-2xl lg:text-3xl font-medium">
           Enhance. Erase. Generate. Convert. Compress. All without losing
           quality, with Refyned.
         </p>

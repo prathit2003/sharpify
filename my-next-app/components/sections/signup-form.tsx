@@ -171,7 +171,7 @@ export function Signupform({
           </form>
           <div className="relative hidden md:block w-full h-full">
             <img
-              src="/images/signup.jpg"
+              src="/images/signup.webp"
               alt="Login Illustration"
               className="hidden md:block w-full h-full object-cover"
             />

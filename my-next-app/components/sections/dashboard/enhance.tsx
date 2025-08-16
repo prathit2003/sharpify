@@ -68,7 +68,6 @@ const Enhance = () => {
     inputRef.current?.click();
   };
 
-  // === When Image Is Enhanced (final_url exists) ===
   if (final_url) {
     return (
       <div className="flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-12 p-4">

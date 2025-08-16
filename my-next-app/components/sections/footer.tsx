@@ -11,37 +11,35 @@ const Footer = () => {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-black w-full z-10"
+      className="w-full z-10"
     >
       <footer>
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 ml-2 sm:ml-0 md:mb-0">
-              <a
-                href=""
-                className="flex items-center justify-start sm:justify-center"
-              >
+              <div className="flex items-center justify-start space-x-2">
                 <img
-                  src="/icons/logo.svg"
-                  className="h-8 md:h-12 w-auto"
+                  src="/icons/favicon.svg"
                   alt="Logo"
+                  className="h-6 md:h-8 w-auto"
                 />
-              </a>
+                <span className="text-main text-2xl font-bold">Refyned.AI</span>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 p-6">
+            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 px-4 mb-4">
               {/* Resources */}
               <div className="text-left">
-                <h2 className="mb-6 font-bold text-sm uppercase text-main">
+                <h2 className="mb-4 md:mb-6 text-sm sm:text-base md:text-lg font-semibold text-main">
                   Resources
                 </h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline hover:text-primary">
+                <ul className="text-gray-200 hover:text-gray-300 text-xs sm:text-sm md:text-base">
+                  <li className="mb-2 md:mb-4">
+                    <a href="#" className="">
                       Real Esgran
                     </a>
                   </li>
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline hover:text-primary">
+                  <li className="mb-2">
+                    <a href="#" className="">
                       Amazon AWS
                     </a>
                   </li>
@@ -50,17 +48,17 @@ const Footer = () => {
 
               {/* Follow Us */}
               <div className="text-left">
-                <h2 className="mb-6 text-sm font-bold uppercase text-main">
+                <h2 className="mb-4 md:mb-6 text-sm sm:text-base md:text-lg font-semibold text-main">
                   Follow us
                 </h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline hover:text-primary">
+                <ul className="text-gray-200 hover:text-gray-300 text-xs sm:text-sm md:text-base">
+                  <li className="mb-2 md:mb-4">
+                    <a href="#" className="">
                       Github
                     </a>
                   </li>
-                  <li>
-                    <a href="#" className="hover:underline hover:text-primary">
+                  <li className="mb-2">
+                    <a href="#" className="">
                       Discord
                     </a>
                   </li>
@@ -69,17 +67,17 @@ const Footer = () => {
 
               {/* Legal */}
               <div className="text-left">
-                <h2 className="mb-6 text-sm font-bold text-gray-900 uppercase dark:text-white">
+                <h2 className="mb-4 md:mb-6 text-sm sm:text-base md:text-lg font-semibold text-main">
                   Legal
                 </h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline hover:text-primary">
+                <ul className="text-gray-200 hover:text-gray-300 text-xs sm:text-sm md:text-base">
+                  <li className="mb-2 md:mb-4">
+                    <a href="#" className="">
                       Privacy Policy
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:underline hover:text-primary">
+                    <a href="#" className="">
                       Terms & Conditions
                     </a>
                   </li>
@@ -88,10 +86,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <hr className="my-2 border-white sm:mx-auto lg:my-4" />
+          <hr className="my-2 border-white w-full lg:my-4" />
 
           <div className="sm:flex sm:items-center sm:justify-between">
-            <span className="text-sm text-gray-300 sm:text-center">
+            <span className="text-sm md:text-base text-main sm:text-center">
               © 2025{" "}
               <a href="https://flowbite.com/" className="hover:underline">
                 Refyned™

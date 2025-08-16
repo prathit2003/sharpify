@@ -56,7 +56,7 @@ const Testimonial: React.FC = () => {
   return (
     <div className="flex flex-col items-center space-y-4 md:space-y-8 w-full my-8 md:my-16 rounded-3xl overflow-hidden">
       {/* Headings */}
-      <div className="flex flex-col items-center space-y-1 lg:space-y-2 mt-12">
+      <div className="flex flex-col items-center mt-12">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,10 +80,10 @@ const Testimonial: React.FC = () => {
       </div>
 
       {/* Scrolling Testimonials */}
-      <div className="w-full overflow-hidden py-10 relative">
+      <div className="w-full overflow-hidden py-16 relative">
         <div className="absolute top-0 left-0 h-full w-18 md:w-24 z-10 fade-left pointer-events-none"></div>
 
-        <div className="flex animate-infinite-scroll-slow space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 w-max">
+        <div className="flex animate-infinite-scroll-slow space-x-8 w-max">
           {[...testimonials, ...testimonials].map((testimonial, index) => (
             <Component key={index} {...testimonial} />
           ))}
